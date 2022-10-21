@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.nftips.kunpeng.orm.mapper.NftInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.nftips.kunpeng.orm.entity.NftInfoEntity">
+        <id column="id" property="id"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modify" property="gmtModify"/>
+        <result column="trading_hash" property="tradingHash"/>
+        <result column="trading_status" property="tradingStatus"/>
+        <result column="height" property="height"/>
+        <result column="energy_value" property="energyValue"/>
+        <result column="remark" property="remark"/>
+        <result column="trading_type" property="tradingType"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="ntf_id" property="ntfId"/>
+        <result column="ntf_name" property="ntfName"/>
+        <result column="sender" property="sender"/>
+        <result column="recipient" property="recipient"/>
+        <result column="chain_link" property="chainLink"/>
+        <result column="chain_data" property="chainData"/>
+        <result column="chain_link_hash" property="chainLinkHash"/>
+        <result column="code" property="code"/>
+        <result column="data_origin" property="dataOrigin"/>
+        <result column="events" property="events"/>
+        <result column="occur_time" property="occurTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        gmt_create,
+        gmt_modify,
+        id, trading_hash, trading_status, height, energy_value, remark, trading_type, category_id, category_name, ntf_id, ntf_name, sender, recipient, chain_link, chain_data, chain_link_hash, `code`, data_origin, `events`, occur_time
+    </sql>
+
+</mapper>

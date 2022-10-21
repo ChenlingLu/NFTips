@@ -1,0 +1,81 @@
+app:
+    name: kunpeng
+    output: /tmp/output/${app.name}
+    logging:
+        level: info
+deploy:
+    env: ${spring.profiles.active}
+# Tomcat
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 80
+    servlet:
+        context-path: /
+logging:
+    file:
+        path: ${app.output}/logs
+    config: classpath:logback-spring.xml
+    level:
+        com.start: info
+        org.springframework: info
+# Mybatis配置
+mybatis:
+    mapperLocations: classpath:mapper/**/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+spring:
+    # 环境 dev|test|pro
+    profiles:
+        active: dev
+        # exclude可以再springboot application中增加
+        #autoconfigure:
+        #    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    # jackson时间格式化
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    web:
+        resources:
+            static-locations: classpath:/static/,classpath:/views/
+    servlet:
+        multipart:
+            max-file-size: 200MB
+            max-request-size: 2000MB
+            enabled: true
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        druid:
+            url: jdbc:mysql://gateway01.us-west-2.prod.aws.tidbcloud.com:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
+            username: 2devWAbVPi2zf2g.root
+            password: Mohuang@Youwo
+            driver-class-name: com.mysql.jdbc.Driver
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 'x'
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                #login-username: admin
+                #login-password: admin
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true

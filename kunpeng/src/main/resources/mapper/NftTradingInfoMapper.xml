@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.nftips.kunpeng.orm.mapper.NftTradingInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.nftips.kunpeng.orm.entity.NftTradingInfoEntity">
+        <id column="id" property="id"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modify" property="gmtModify"/>
+        <result column="ntf_id" property="ntfId"/>
+        <result column="ntf_name" property="ntfName"/>
+        <result column="trading_hash" property="tradingHash"/>
+        <result column="trading_type" property="tradingType"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="sender" property="sender"/>
+        <result column="recipient" property="recipient"/>
+        <result column="amount" property="amount"/>
+        <result column="height" property="height"/>
+        <result column="energy_value" property="energyValue"/>
+        <result column="occur_time" property="occurTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        gmt_create,gmt_modify,
+        id, ntf_id, ntf_name, trading_hash, trading_type, category_id,
+        sender, recipient, amount, height, energy_value, occur_time
+    </sql>
+    <select id="selectTopN" resultType="io.nftips.kunpeng.orm.entity.NftTopInfoEntity">
+
+    </select>
+
+</mapper>
