@@ -27,7 +27,49 @@
         sender, recipient, amount, height, energy_value, occur_time
     </sql>
     <select id="selectTopN" resultType="io.nftips.kunpeng.orm.entity.NftTopInfoEntity">
+        WITH trade AS (
+            -- 计算NFT交易数，不同的事件类型代表不同的含义
+            SELECT category_id,
+                   trading_type,
+                   COUNT(1) AS cnt
+            FROM bsn_nft_info
+            GROUP BY category_id,trading_type
+        ),
+         trade_time AS (
+             SELECT info.category_id,
+                    DATEDIFF(MAX(info.occur_time), MIN(info.occur_time)) AS diff_time
+             FROM bsn_nft_info info
+             WHERE info.trading_type = "transfer_nft"
+             GROUP BY category_id
+         ),
+         avg_time AS (
+             -- 计算持仓平均时间
+             SELECT tt.category_id,
+                    IFNULL(IFNULL(tt.diff_time, 0) / IFNULL(t.cnt,1), 1) AS avg_time
+             FROM trade_time tt
+                LEFT JOIN trade t
+                ON tt.category_id = t.category_id
+             WHERE t.trading_type = "transfer_nft"
+         ),
+         chg AS (
+             -- 计算涨跌幅，近半年
+             SELECT category_id,
 
+             FROM bsn_nft_trading_info
+         ),
+         worth AS (
+             -- 投资指数 = 一年内转手次数 * 30% + 一年内平均转手时间 * 20% + 一年内涨跌幅 * 50%
+             SELECT t.category_id,
+                    (IFNULL(t.cnt, 0) * 0.3 + IFNULL(at.avg_time, 0) * 0.2) AS worth
+             FROM trade t
+                JOIN avg_time at
+                ON t.category_id = at.category_id
+             WHERE t.trading_type = "transfer_nft"
+         )
+        SELECT *
+        FROM bsn_nft_info bni
+        JOIN worth w
+        ON bni.category_id = w.category_id
+        GROUP BY bni.category_id
     </select>
-
 </mapper>
