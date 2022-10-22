@@ -109,6 +109,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         BeanUtil.copyProperties(nftInfoEntity, baseInfo);
         baseInfo.setIssueCount(mintNftCount);
         baseInfo.setIssueStep("mint_nft");
+        baseInfo.setHoldingHuman(0L);
         if ("issue_denom".equals(nftInfoEntity.getTradingType())) {
             baseInfo.setSender(nftInfoEntity.getSender());
             baseInfo.setIssueStep("issue_denom");
@@ -121,7 +122,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
 
         if (isMintNft) {
             NFTMintStatisticsEntity statisticsEntity = nftInfoMapper.statisticsBaseInfo(categoryId);
-            if (statisticsEntity == null) {
+            if (statisticsEntity != null) {
                 BeanUtil.copyProperties(statisticsEntity, baseInfo);
             }
             Long realTradeCount = nftInfoMapper.statisticsRealTradeCount(categoryId);

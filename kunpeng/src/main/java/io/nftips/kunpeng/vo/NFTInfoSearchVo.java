@@ -1,5 +1,6 @@
 package io.nftips.kunpeng.vo;
 
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -76,6 +77,11 @@ public class NFTInfoSearchVo {
          */
         private Long realTradeCount;
 
+        /**
+         * 持有人
+         */
+        private Long holdingHuman;
+
 
     }
 
@@ -97,6 +103,10 @@ public class NFTInfoSearchVo {
          */
         private Double lastTransferValue;
         /**
+         * 与前一次的差值
+         */
+        private Double preTransferValueDiff;
+        /**
          * 累积收益
          */
         private Double totalProfit;
@@ -108,10 +118,15 @@ public class NFTInfoSearchVo {
          * 交易数
          */
         private Long transactions;
+
         /**
-         * 交易账户
+         * 参与交易的账户数
          */
-        private Long account;
+        private Integer accounts;
+        /**
+         * 购买指数
+         */
+        private Integer buyingIndex;
     }
 
     /**
