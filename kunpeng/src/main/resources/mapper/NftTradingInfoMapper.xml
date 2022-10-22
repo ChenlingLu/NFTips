@@ -28,48 +28,124 @@
     </sql>
     <select id="selectTopN" resultType="io.nftips.kunpeng.orm.entity.NftTopInfoEntity">
         WITH trade AS (
-            -- 计算NFT交易数，不同的事件类型代表不同的含义
-            SELECT category_id,
-                   trading_type,
-                   COUNT(1) AS cnt
-            FROM bsn_nft_info
-            GROUP BY category_id,trading_type
+        -- 计算NFT交易数，不同的事件类型代表不同的含义
+        SELECT category_id,
+               trading_type,
+               COUNT(1) AS cnt
+        FROM bsn_nft_info
+        GROUP BY category_id,trading_type
         ),
-         trade_time AS (
-             SELECT info.category_id,
-                    DATEDIFF(MAX(info.occur_time), MIN(info.occur_time)) AS diff_time
-             FROM bsn_nft_info info
-             WHERE info.trading_type = "transfer_nft"
-             GROUP BY category_id
-         ),
-         avg_time AS (
-             -- 计算持仓平均时间
-             SELECT tt.category_id,
-                    IFNULL(IFNULL(tt.diff_time, 0) / IFNULL(t.cnt,1), 1) AS avg_time
-             FROM trade_time tt
-                LEFT JOIN trade t
-                ON tt.category_id = t.category_id
-             WHERE t.trading_type = "transfer_nft"
-         ),
-         chg AS (
-             -- 计算涨跌幅，近半年
-             SELECT category_id,
-
-             FROM bsn_nft_trading_info
-         ),
-         worth AS (
-             -- 投资指数 = 一年内转手次数 * 30% + 一年内平均转手时间 * 20% + 一年内涨跌幅 * 50%
-             SELECT t.category_id,
-                    (IFNULL(t.cnt, 0) * 0.3 + IFNULL(at.avg_time, 0) * 0.2) AS worth
-             FROM trade t
-                JOIN avg_time at
-                ON t.category_id = at.category_id
-             WHERE t.trading_type = "transfer_nft"
-         )
-        SELECT *
-        FROM bsn_nft_info bni
-        JOIN worth w
-        ON bni.category_id = w.category_id
-        GROUP BY bni.category_id
+        trade_time AS (
+        SELECT info.category_id,
+            DATEDIFF(MAX(info.occur_time), MIN(info.occur_time)) AS diff_time
+        FROM bsn_nft_info info
+        WHERE info.trading_type = "transfer_nft"
+        GROUP BY category_id
+        ),
+        avg_time AS (
+        -- 计算持仓平均时间
+        SELECT tt.category_id,
+            IFNULL(IFNULL(tt.diff_time, 0) / IFNULL(t.cnt,1), 1) AS avg_time
+        FROM trade_time tt
+              LEFT JOIN trade t
+                        ON tt.category_id = t.category_id
+        WHERE t.trading_type = "transfer_nft"
+        ),
+        now_quarter_trade AS (
+        -- 查询当季交易额
+        SELECT a.category_id,
+            date_format( a.occur_time, '%Y' ) AS now_year,
+            QUARTER ( a.occur_time ) a_quarter,
+            CONCAT( YEAR ( a.occur_time ), QUARTER ( a.occur_time ) ) now_quarter,
+            CONVERT(sum( a.amount ), DECIMAL ( 10, 2 )) AS a_amount,
+            SUM( a.energy_value ) AS a_energy_value
+        FROM
+         bsn_nft_trading_info a
+        GROUP BY
+         category_id,CONCAT( YEAR ( a.occur_time ), QUARTER ( a.occur_time )),date_format( a.occur_time, '%Y' ), QUARTER ( a.occur_time )
+        ),
+        last_quarter_trade AS (
+        SELECT b.category_id,
+            CONCAT( YEAR ( b.occur_time ), QUARTER ( DATE_ADD( b.occur_time, INTERVAL 1 QUARTER ) ) ) AS last_quarter,
+            CONVERT(sum( b.amount ), DECIMAL ( 10, 2 )) AS b_amount,
+            SUM( b.energy_value ) AS b_energy_value
+        FROM
+         bsn_nft_trading_info b
+        GROUP BY
+         category_id,CONCAT( YEAR ( b.occur_time ), QUARTER ( DATE_ADD( b.occur_time, INTERVAL 1 QUARTER ) ) )
+        ),
+        last_year_quarter_trade AS (
+        SELECT c.category_id,
+            CONCAT(YEAR( DATE_ADD( c.occur_time, INTERVAL 1 year )),QUARTER(c.occur_time)) as last_year_quarter,
+            CONVERT(SUM( c.amount ), DECIMAL ( 10, 2 )) AS c_amount,
+            SUM( c.energy_value ) AS c_energy_value
+        FROM
+         bsn_nft_trading_info c
+        GROUP BY
+         category_id,CONCAT(YEAR( DATE_ADD( c.occur_time, INTERVAL 1 year )),QUARTER(c.occur_time))
+        ),
+        chg AS (
+        -- 计算涨跌幅，近半年
+        SELECT
+         now_quarter_trade.category_id,
+         now_quarter_trade.now_year,
+         now_quarter_trade.a_quarter,
+         now_quarter_trade.now_quarter,
+         CASE
+             WHEN now_quarter_trade.a_amount IS NULL
+                 OR now_quarter_trade.a_amount = 0 THEN
+                 0 ELSE now_quarter_trade.a_amount
+             END this_sale_money,
+         CASE
+             WHEN last_quarter_trade.b_amount IS NULL
+                 OR last_quarter_trade.b_amount = 0 THEN
+                 0 ELSE last_quarter_trade.b_amount
+             END last_sale_money,
+         CASE
+             WHEN last_quarter_trade.b_amount IS NULL
+                 OR last_quarter_trade.b_amount = 0 THEN
+                 0 ELSE CONVERT ( ( ( now_quarter_trade.a_amount - last_quarter_trade.b_amount ) / last_quarter_trade.b_amount ) * 100, DECIMAL ( 10, 2 ) )
+             END last_quarter_ratio,
+         CASE
+             WHEN last_year_quarter_trade.c_amount	 IS NULL
+                 OR last_year_quarter_trade.c_amount	= 0 THEN
+                 0 ELSE last_year_quarter_trade.c_amount
+             END last_year_money,
+         CASE
+             WHEN last_year_quarter_trade.c_amount	 IS NULL
+                 OR last_year_quarter_trade.c_amount	= 0 THEN
+                 0 ELSE CONVERT ( ( ( now_quarter_trade.a_amount - last_year_quarter_trade.c_amount ) / last_year_quarter_trade.c_amount ) * 100, DECIMAL ( 10, 2 ) )
+             END last_year_ratio
+        FROM now_quarter_trade
+              LEFT JOIN last_quarter_trade
+                        ON now_quarter_trade.category_id = last_quarter_trade.category_id
+                            AND now_quarter_trade.now_quarter = last_quarter_trade.last_quarter
+              LEFT JOIN last_year_quarter_trade
+                        ON  now_quarter_trade.category_id = last_quarter_trade.category_id
+                            AND now_quarter_trade.now_quarter = last_year_quarter_trade.last_year_quarter
+        ),
+        issue_value AS (
+            SELECT category_id, SUM(energy_value) AS issue_energy_value
+            FROM bsn_nft_info
+            GROUP BY category_id
+        ),
+        ins_worth AS (
+        -- 投资指数 = 一年内转手次数 * 30% + 一年内平均转手时间 * 20% + 一年内涨跌幅 * 50%
+        SELECT t.category_id, (IFNULL(t.cnt, 0) * 0.3 + IFNULL(at.avg_time, 0) * 0.2)
+         AS worth
+        FROM trade t
+              JOIN avg_time at
+                   ON t.category_id = at.category_id
+              LEFT JOIN chg
+                        ON t.category_id = chg.category_id
+        WHERE t.trading_type = "transfer_nft"
+        AND chg.now_quarter = CONCAT(YEAR(NOW()),QUARTER(NOW()))
+        )
+        SELECT  ins_worth.category_id, ins_worth.worth, issue_value.issue_energy_value
+        FROM ins_worth
+        LEFT JOIN issue_value
+        ON ins_worth.category_id = issue_value.category_id
+        ORDER BY worth DESC
+        LIMIT #{topn}
     </select>
 </mapper>

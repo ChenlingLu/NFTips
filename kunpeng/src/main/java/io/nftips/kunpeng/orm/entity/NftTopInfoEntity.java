@@ -2,6 +2,8 @@ package io.nftips.kunpeng.orm.entity;
 
 import io.nftips.kunpeng.vo.BaseVo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * NFT 投资指数
@@ -10,6 +12,8 @@ import lombok.Data;
  * @date 2022-10-2022/10/21 下午1:20
  **/
 @Data
+@Getter
+@Setter
 public class NftTopInfoEntity extends BaseEntity<NftTopInfoEntity> {
     private static final long serialVersionUID = 8642483020062860069L;
     /**
