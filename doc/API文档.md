@@ -269,9 +269,9 @@ Result:
 
 ## 5. NFT数据分析列表
 
-URL: `data/analy/v1`
+URL: `query/data/analy/v1`
 
-Method: `POST`
+Method: `GET`
 
 Param:
 

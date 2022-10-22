@@ -16,5 +16,5 @@ public class MappingPath {
     /**
      * 数据分析
      */
-    public static final String Data_Analy_V1 = "data/analy/v1";
+    public static final String Data_Analy_V1 = "query/data/analy/v1";
 }
