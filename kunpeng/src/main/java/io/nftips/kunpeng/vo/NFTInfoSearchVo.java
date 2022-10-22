@@ -67,9 +67,7 @@ public class NFTInfoSearchVo {
          */
         private Long issueCount;
         /**
-         * 发行阶段：issue_denom     创建NFT类别
-         *         transfer_denom  转让NFT类别
-         *         mint_nft        发行NFT
+         * 发行阶段：issue_denom     创建NFT类别 transfer_denom  转让NFT类别 mint_nft        发行NFT
          */
         private String issueStep;
 
@@ -106,6 +104,14 @@ public class NFTInfoSearchVo {
          * 平均价
          */
         private Double avgValue;
+        /**
+         * 交易数
+         */
+        private Long transactions;
+        /**
+         * 交易账户
+         */
+        private Long account;
     }
 
     /**

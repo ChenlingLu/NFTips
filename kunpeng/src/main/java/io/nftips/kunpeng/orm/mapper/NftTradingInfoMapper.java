@@ -27,5 +27,10 @@ public interface NftTradingInfoMapper extends BaseMapper<NftTradingInfoEntity> {
      */
     List<NftTopInfoEntity> selectTopN(@Param("topn") Integer n);
 
-
+    /**
+     * 执行计划结果
+     * @param n
+     * @return
+     */
+    List<String> selectTopN_Explain(@Param("topn") Integer n);
 }

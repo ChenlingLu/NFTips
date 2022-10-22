@@ -77,6 +77,7 @@ public class NFTClassificationTopServiceImpl implements NFTClassificationTopServ
         List<NftTopInfoVo> top10 = topInfos.stream().filter(x -> x.getCategoryName() != null)
                 .map(entity -> BeanUtil.copyProperties(entity, NftTopInfoVo.class))
                 .collect(Collectors.toList());
+//        List<String> explain = nftTradingInfoMapper.selectTopN_Explain(10);
         return R.ok(top10);
     }
 }

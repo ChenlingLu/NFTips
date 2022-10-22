@@ -135,7 +135,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         nftInfoSearchVo.setTradeSummary(tradeSummary);
         tradeSummary.setAvgValue(0.0D);
         tradeSummary.setCategoryId(categoryId);
-        tradeSummary.setLastTransferTime(null);
+        tradeSummary.setLastTransferTime("");
         tradeSummary.setLastTransferValue(0.0D);
         tradeSummary.setTotalProfit(0.0D);
         if (isMintNft) {
