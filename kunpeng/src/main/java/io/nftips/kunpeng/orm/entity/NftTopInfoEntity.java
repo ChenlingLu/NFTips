@@ -40,4 +40,6 @@ public class NftTopInfoEntity extends BaseEntity<NftTopInfoEntity> {
      * 投资价值
      */
     private Double worth;
+
+    private String chainLink;
 }
