@@ -25,6 +25,7 @@ import java.util.Collections;
 public class CodeGenerator {
 
     public static void main(String[] args) {
+        System.exit(0);
         DataSourceConfig.Builder dcb = new DataSourceConfig.Builder("jdbc:mysql://gateway01.us-west-2.prod.aws.tidbcloud.com:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true&useUnicode=true&characterEncoding=utf-8","2devWAbVPi2zf2g.root", "Mohuang@Youwo")
                 .dbQuery(new MySqlQuery())
                 .schema("kunpeng")

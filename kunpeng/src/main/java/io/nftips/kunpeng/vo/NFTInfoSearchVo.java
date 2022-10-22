@@ -31,7 +31,7 @@ public class NFTInfoSearchVo {
      * 基础信息
      */
     @Data
-    public class BaseInfo {
+    public static class BaseInfo {
         /**
          * 发行能量值
          */
@@ -65,7 +65,18 @@ public class NFTInfoSearchVo {
         /**
          * 发行数量
          */
-        private Integer issueCount;
+        private Long issueCount;
+        /**
+         * 发行阶段：issue_denom     创建NFT类别
+         *         transfer_denom  转让NFT类别
+         *         mint_nft        发行NFT
+         */
+        private String issueStep;
+
+        /**
+         * 实际交易数
+         */
+        private Long realTradeCount;
 
 
     }

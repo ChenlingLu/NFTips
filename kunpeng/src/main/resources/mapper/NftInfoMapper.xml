@@ -29,11 +29,73 @@
         <result column="occur_time" property="occurTime" />
     </resultMap>
 
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseStatisticInfoResultMap" type="io.nftips.kunpeng.orm.entity.NFTMintStatisticsEntity">
+        <result column="issue_energy_value" property="issueEnergyValue" />
+        <result column="category_id" property="categoryId" />
+        <result column="category_name" property="categoryName" />
+        <result column="sender" property="sender" />
+        <result column="chain_link" property="chainLink" />
+        <result column="occur_time" property="occurTime" />
+        <result column="issue_count" property="issueCount"/>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         gmt_create,
         gmt_modify,
         id, trading_hash, trading_status, height, energy_value, remark, trading_type, category_id, category_name, ntf_id, ntf_name, sender, recipient, chain_link, chain_data, chain_link_hash, `code`, data_origin, `events`, occur_time
     </sql>
+    <select id="statisticsBaseInfo" resultMap="BaseStatisticInfoResultMap">
+        WITH nft_count AS (
+            -- 统计NFT 实际发行数量
+            SELECT bni.category_id,
+                   COUNT(*) AS issue_count,
+                   SUM(energy_value) AS issue_energy_value
+            FROM bsn_nft_info bni
+            WHERE bni.category_id = #{categoryId}
+                  AND bni.trading_type = "mint_nft"
+        ),
+        nft_base_inf AS (
+            SELECT category_id,
+                   category_name,
+                   sender,
+                   chain_link,
+                   occur_time
+            FROM bsn_nft_info
+            WHERE category_id = #{categoryId}
+            AND trading_type = "mint_nft"
+            ORDER BY occur_time ASC
+            LIMIT 1
+        )
+        SELECT b.category_id,
+               b.category_name,
+               b.sender,
+               b.chain_link,
+               b.occur_time,
+               c.issue_count,
+               c.issue_energy_value
+        FROM nft_base_inf b
+        LEFT JOIN nft_count c
+            ON b.category_id = c.category_id
+    </select>
+    <select id="statisticsRealTradeCount" resultType="java.lang.Long">
+        WITH mint AS (
+            SELECT category_id,
+                   recipient,
+                   COUNT(*) AS mint_count
+            FROM bsn_nft_info
+            WHERE category_id = #{categoryId}
+              AND trading_type = "mint_nft"
+            GROUP BY category_id,recipient
+        )
+        SELECT COUNT(*)
+        FROM bsn_nft_info bni
+        WHERE bni.category_id = #{categoryId}
+            AND bni.sender IN (
+                SELECT recipient
+                FROM mint
+            )
+    </select>
 
 </mapper>
