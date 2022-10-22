@@ -267,6 +267,84 @@ Result:
 }
 ```
 
+## 5. NFT数据分析列表
 
+URL: `data/analy/v1`
 
+Method: `POST`
+
+Param:
+
+|   field    |  type  | required | desc |
+| :--------: | :----: | :------: | ---- |
+|    day     |  Int   |    Y     |      |
+| categoryId | String |    Y     |      |
+
+Result:
+
+```json
+{
+  "msg": "success",
+  "code": 0,
+  "data": {
+  	// 总转手天数
+    "totalChangeDay": 2,
+    //平均收益
+    "averageRevenue": [
+      {
+      	// 收益
+        "revenue": 10,
+        //天数
+        "time": 2022-10-22T00:55:26
+      },
+      {
+        "revenue": 10,
+        "time": 2022-10-22T00:55:26
+      }
+    ],
+    //总涨幅
+    "totalGains": 4000,
+    //交易次数
+    "tradingNumber": [
+      {
+      	// 次数
+        "tradingNum": 10,
+        //时间
+        "time": 2022-10-22T00:55:26
+      },
+      {
+        "tradingNum": 20,
+        "time": 2022-10-22T00:55:26
+      }
+    ],
+    //对比之前交易次数
+    "beforeTradingNum": "+10",
+    //对比之前收益
+    "beforeRevenue": "-10.0",
+    //总交易次数
+    "totalTradingNum": 30,
+    //对比之前转手天数
+    "beforeChangeDay": "-0.5",
+    //对比之前涨幅
+    "beforeGains": "+1000",
+    //总收益
+    "totalRevenue": 20,
+    // nft类别标识
+    "categoryId": "2qasd2a1213asdz",
+    //历史价格
+    "priceHistory": [
+      {
+      	// 价格
+        "price": 20,
+        //时间
+        "time": 2022-10-22T00:55:26
+      },
+      {
+        "price": 40,
+        "time": 2022-10-22T00:55:26
+      }
+    ]
+  }
+}
+```
 
