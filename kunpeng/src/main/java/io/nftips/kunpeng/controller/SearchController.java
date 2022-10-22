@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import static io.nftips.kunpeng.common.MappingPath.CATEGORY_ID_SEARCH_V1;
 import static io.nftips.kunpeng.util.CodeEnum.IMAGE_NOT_ALLOW_EMPTY;
+import static io.nftips.kunpeng.util.CodeEnum.NOT_FOUND_NFT;
 
 /**
  * @author zhoujunwen
