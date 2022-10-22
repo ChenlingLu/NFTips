@@ -38,7 +38,7 @@ public class SearchController {
 
         R r = R.ok(vo);
         if (vo ==null) {
-            r = R.error(IMAGE_NOT_ALLOW_EMPTY.getCode(), IMAGE_NOT_ALLOW_EMPTY.getDesc());
+            r = R.error(NOT_FOUND_NFT.getCode(), NOT_FOUND_NFT.getDesc());
         }
         String result = JSONUtil.toJsonStr(r);
         CommonUtil.printResult(response, result);

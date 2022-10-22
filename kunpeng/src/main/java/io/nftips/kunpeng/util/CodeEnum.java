@@ -12,7 +12,8 @@ public enum  CodeEnum {
      */
     IMAGE_NOT_ALLOW_EMPTY(4001, "图片不允许为空"),
     IMAGE_FEATURE_FAIL(4002, "提取图片特征失败"),
-    IMAGE_SEARCH_FAIL(4003, "查询NFT异常");
+    IMAGE_SEARCH_FAIL(4003, "查询NFT异常"),
+    NOT_FOUND_NFT(4004, "未查询到NFT藏品");
 
     /**
      *  CODE
