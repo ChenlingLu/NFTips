@@ -2,8 +2,10 @@ package io.nftips.kunpeng.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import io.nftips.kunpeng.orm.entity.HoldingPeriodEntity;
 import io.nftips.kunpeng.orm.entity.NFTMintStatisticsEntity;
 import io.nftips.kunpeng.orm.entity.NftInfoEntity;
+import io.nftips.kunpeng.orm.entity.NftProfitEntity;
 import io.nftips.kunpeng.orm.mapper.NftInfoMapper;
 import io.nftips.kunpeng.orm.service.NftInfoService;
 import io.nftips.kunpeng.service.NFTBlockChainInfoService;
@@ -13,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zhoujunwen
@@ -46,7 +50,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
             return null;
         }
 
-        return searchByNameOrId(nftInfoEntity.getCategoryId());
+        return searchByCategory(nftInfoEntity.getCategoryId());
     }
 
     /**
@@ -57,7 +61,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
      * @return
      */
     @Override
-    public NFTInfoSearchVo searchByNameOrId(String categoryId) {
+    public NFTInfoSearchVo searchByCategory(String categoryId) {
         if (StrUtil.isBlank(categoryId)) {
             return null;
         }
@@ -101,6 +105,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         Long mintNftCount = 0L;
         NFTInfoSearchVo nftInfoSearchVo = new NFTInfoSearchVo();
         NFTInfoSearchVo.BaseInfo baseInfo = new NFTInfoSearchVo.BaseInfo();
+        nftInfoSearchVo.setBaseInfo(baseInfo);
         BeanUtil.copyProperties(nftInfoEntity, baseInfo);
         baseInfo.setIssueCount(mintNftCount);
         baseInfo.setIssueStep("mint_nft");
@@ -113,19 +118,61 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         } else if ("mint_nft".equals(nftInfoEntity.getTradingType())) {
             baseInfo.setSender("");
         }
-        nftInfoSearchVo.setBaseInfo(baseInfo);
 
         if (isMintNft) {
-            NFTMintStatisticsEntity statisticsEntity = nftInfoMapper.statisticsBaseInfo(nftInfoEntity.getCategoryId());
+            NFTMintStatisticsEntity statisticsEntity = nftInfoMapper.statisticsBaseInfo(categoryId);
             if (statisticsEntity == null) {
                 BeanUtil.copyProperties(statisticsEntity, baseInfo);
             }
-            Long realTradeCount = nftInfoMapper.statisticsRealTradeCount(nftInfoEntity.getCategoryId());
+            Long realTradeCount = nftInfoMapper.statisticsRealTradeCount(categoryId);
             baseInfo.setRealTradeCount(realTradeCount);
             if (realTradeCount == null) {
                 baseInfo.setRealTradeCount(0L);
             }
         }
+        // 填充交易摘要
+        NFTInfoSearchVo.TradeSummary tradeSummary = new NFTInfoSearchVo.TradeSummary();
+        nftInfoSearchVo.setTradeSummary(tradeSummary);
+        tradeSummary.setAvgValue(0.0D);
+        tradeSummary.setCategoryId(categoryId);
+        tradeSummary.setLastTransferTime(null);
+        tradeSummary.setLastTransferValue(0.0D);
+        tradeSummary.setTotalProfit(0.0D);
+        if (isMintNft) {
+            NftProfitEntity nftProfit = nftInfoMapper.statisticsProfit(categoryId);
+            if (nftProfit != null) {
+                BeanUtil.copyProperties(nftProfit, tradeSummary);
+            }
+        }
+
+        // 填充持有时间
+        NFTInfoSearchVo.HoldingPeriod holdingPeriod = new NFTInfoSearchVo.HoldingPeriod();
+        nftInfoSearchVo.setHoldingPeriod(holdingPeriod);
+        Map<String, Object> larger = new HashMap<>(2);
+        larger.put("radio", "0%");
+        larger.put("tip", "<365d");
+
+        Map<String, Object> middle = new HashMap<>(2);
+        middle.put("radio", "0%");
+        middle.put("tip", "<365d");
+
+        Map<String, Object> small = new HashMap<>(2);
+        small.put("radio", "0%");
+        small.put("tip", "<365d");
+
+        holdingPeriod.setLager(larger);
+        holdingPeriod.setMiddle(middle);
+        holdingPeriod.setSmall(small);
+
+        if (isMintNft) {
+            HoldingPeriodEntity holdingPeriodEntity = nftInfoMapper.statisticsHoldingPeriod(categoryId);
+            if (holdingPeriodEntity != null) {
+                larger.put("radio", holdingPeriodEntity.getLagerRadio());
+                middle.put("radio", holdingPeriodEntity.getMiddleRadio());
+                small.put("radio", holdingPeriodEntity.getSmallRadio());
+            }
+        }
+
         return nftInfoSearchVo;
     }
 }

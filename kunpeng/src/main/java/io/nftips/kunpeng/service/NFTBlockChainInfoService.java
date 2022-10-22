@@ -24,5 +24,5 @@ public interface NFTBlockChainInfoService {
      *
      * @return
      */
-    NFTInfoSearchVo searchByNameOrId(String nameOrId);
+    NFTInfoSearchVo searchByCategory(String nameOrId);
 }

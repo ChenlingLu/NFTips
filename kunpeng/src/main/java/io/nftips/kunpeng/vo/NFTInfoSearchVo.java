@@ -60,7 +60,7 @@ public class NFTInfoSearchVo {
         /**
          * 发生时间
          */
-        private LocalDateTime occurTime;
+        private String occurTime;
 
         /**
          * 发行数量
@@ -85,7 +85,7 @@ public class NFTInfoSearchVo {
      * 交易摘要
      */
     @Data
-    public class TradeSummary {
+    public static class TradeSummary {
         /**
          * 类别标识
          */
@@ -93,7 +93,7 @@ public class NFTInfoSearchVo {
         /**
          * 最近一次交易时间
          */
-        private LocalDateTime lastTransferTime;
+        private String lastTransferTime;
         /**
          * 最近一次交易价值
          */
@@ -112,7 +112,7 @@ public class NFTInfoSearchVo {
      * 持有时间
      */
     @Data
-    public class HoldingPeriod {
+    public static class HoldingPeriod {
         /**
          * 持有大于1年 value:12%, desc: >1Y
          */

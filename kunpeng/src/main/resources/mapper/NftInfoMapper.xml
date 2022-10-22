@@ -97,5 +97,11 @@
                 FROM mint
             )
     </select>
+    <select id="statisticsProfit" resultType="io.nftips.kunpeng.orm.entity.NftProfitEntity">
+
+    </select>
+    <select id="statisticsHoldingPeriod" resultType="io.nftips.kunpeng.orm.entity.HoldingPeriodEntity">
+
+    </select>
 
 </mapper>

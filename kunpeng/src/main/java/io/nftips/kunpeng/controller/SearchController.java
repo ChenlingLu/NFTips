@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import static io.nftips.kunpeng.common.MappingPath.CATEGORY_ID_SEARCH_V1;
-import static io.nftips.kunpeng.util.CodeEnum.IMAGE_NOT_ALLOW_EMPTY;
 import static io.nftips.kunpeng.util.CodeEnum.NOT_FOUND_NFT;
 
 /**
@@ -35,7 +34,7 @@ public class SearchController {
     @RequestMapping(value = {CATEGORY_ID_SEARCH_V1})
     @ResponseBody
     public void searchByCategoryId(@RequestParam(value = Constants.CATEGORY_ID) String categoryId ) {
-        NFTInfoSearchVo vo = nftBlockChainInfoService.searchByNameOrId(categoryId);
+        NFTInfoSearchVo vo = nftBlockChainInfoService.searchByCategory(categoryId);
 
         R r = R.ok(vo);
         if (vo ==null) {
