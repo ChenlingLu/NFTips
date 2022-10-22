@@ -30,4 +30,12 @@ public class NftProfitEntity {
      * 平均价
      */
     private Double avgValue;
+    /**
+     * 交易数
+     */
+    private Long transactions;
+    /**
+     * 交易账户
+     */
+    private Long account;
 }
