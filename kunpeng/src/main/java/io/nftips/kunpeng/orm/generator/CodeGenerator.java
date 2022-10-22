@@ -99,21 +99,21 @@ public class CodeGenerator {
                             //.superClass(BaseController.class)
                             .enableHyphenStyle()
                             .enableRestStyle()
-                            .formatFileName("%sController")
+                            .formatFileName("%sController2")
                             // mapper策略配置
                             .mapperBuilder()
                             .superClass(BaseMapper.class)
                             .enableMapperAnnotation()
                             .enableBaseResultMap()
                             .enableBaseColumnList()
-                            .formatMapperFileName("%sMapper")
-                            .formatXmlFileName("%sMapper")
+                            .formatMapperFileName("%sMapper2")
+                            .formatXmlFileName("%sMapper2")
                             // service策略配置
                             .serviceBuilder()
                             .superServiceClass(IService.class)
                             .superServiceImplClass(ServiceImpl.class)
-                            .formatServiceFileName("%sService")
-                            .formatServiceImplFileName("%sServiceImpl")
+                            .formatServiceFileName("%sService2")
+                            .formatServiceImplFileName("%sServiceImpl2")
                             .build();
                 });
 

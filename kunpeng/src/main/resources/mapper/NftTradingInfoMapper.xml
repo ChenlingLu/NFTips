@@ -4,20 +4,21 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="io.nftips.kunpeng.orm.entity.NftTradingInfoEntity">
-        <id column="id" property="id"/>
-        <result column="gmt_create" property="gmtCreate"/>
-        <result column="gmt_modify" property="gmtModify"/>
-        <result column="ntf_id" property="ntfId"/>
-        <result column="ntf_name" property="ntfName"/>
-        <result column="trading_hash" property="tradingHash"/>
-        <result column="trading_type" property="tradingType"/>
-        <result column="category_id" property="categoryId"/>
-        <result column="sender" property="sender"/>
-        <result column="recipient" property="recipient"/>
-        <result column="amount" property="amount"/>
-        <result column="height" property="height"/>
-        <result column="energy_value" property="energyValue"/>
-        <result column="occur_time" property="occurTime"/>
+        <id column="id" property="id" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modify" property="gmtModify" />
+        <result column="ntf_id" property="ntfId" />
+        <result column="ntf_name" property="ntfName" />
+        <result column="trading_hash" property="tradingHash" />
+        <result column="trading_type" property="tradingType" />
+        <result column="category_id" property="categoryId" />
+        <result column="sender" property="sender" />
+        <result column="recipient" property="recipient" />
+        <result column="amount" property="amount" />
+        <result column="height" property="height" />
+        <result column="energy_value" property="energyValue" />
+        <result column="data_origin" property="dataOrigin" />
+        <result column="occur_time" property="occurTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->

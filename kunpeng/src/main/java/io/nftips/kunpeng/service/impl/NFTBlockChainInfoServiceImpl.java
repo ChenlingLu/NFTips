@@ -1,8 +1,14 @@
 package io.nftips.kunpeng.service.impl;
 
+import io.nftips.kunpeng.orm.entity.NftInfoEntity;
+import io.nftips.kunpeng.orm.service.NftInfoService;
 import io.nftips.kunpeng.service.NFTBlockChainInfoService;
 import io.nftips.kunpeng.vo.NFTInfoSearchVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @author zhoujunwen
@@ -10,6 +16,10 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
+    private static final Logger logger = LoggerFactory.getLogger(NFTBlockChainInfoServiceImpl.class);
+
+    @Resource
+    private NftInfoService nftInfoService;
     /**
      * 根据图像Hash查询数字藏品
      *
@@ -19,6 +29,9 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
      */
     @Override
     public NFTInfoSearchVo searchByImgHash(String imgHash) {
+        nftInfoService.lambdaQuery().select()
+                .eq(NftInfoEntity::getCategoryName,imgHash)
+                .last("limit 1").one();
         return null;
     }
 

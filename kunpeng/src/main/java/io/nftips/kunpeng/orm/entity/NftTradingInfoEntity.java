@@ -95,6 +95,12 @@ public class NftTradingInfoEntity extends BaseEntity<NftTradingInfoEntity> {
     private Long energyValue;
 
     /**
+     * 数据源
+     */
+    @TableField("data_origin")
+    private String dataOrigin;
+
+    /**
      * 发生时间
      */
     @TableField("occur_time")

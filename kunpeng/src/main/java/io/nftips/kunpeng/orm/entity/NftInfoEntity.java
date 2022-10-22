@@ -124,6 +124,12 @@ public class NftInfoEntity extends BaseEntity<NftTopInfoEntity> {
     private String chainLinkHash;
 
     /**
+     * img hash
+     */
+    @TableField("img_hash")
+    private String imgHash;
+
+    /**
      * 源码
      */
     @TableField("`code`")
