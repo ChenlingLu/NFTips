@@ -43,7 +43,7 @@ public class NFTClassificationTopServiceImpl implements NFTClassificationTopServ
      */
     @Override
     public R top10() {
-        /*List<NftTopInfoEntity> topInfos = nftTradingInfoMapper.selectTopN(10);
+        List<NftTopInfoEntity> topInfos = nftTradingInfoMapper.selectTopN(10);
         if (CollectionUtils.isEmpty(topInfos)) {
             return R.ok();
         }
@@ -76,8 +76,8 @@ public class NFTClassificationTopServiceImpl implements NFTClassificationTopServ
         }
         List<NftTopInfoVo> top10 = topInfos.stream().filter(x -> x.getCategoryName() != null)
                 .map(entity -> BeanUtil.copyProperties(entity, NftTopInfoVo.class))
-                .collect(Collectors.toList());*/
-        List<String> explain = nftTradingInfoMapper.selectTopN_Explain(10);
-        return R.ok(explain);
+                .collect(Collectors.toList());
+//        List<String> explain = nftTradingInfoMapper.selectTopN_Explain(10);
+        return R.ok(top10);
     }
 }
