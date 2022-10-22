@@ -10,12 +10,14 @@ import io.nftips.kunpeng.orm.mapper.NftInfoMapper;
 import io.nftips.kunpeng.orm.service.NftInfoService;
 import io.nftips.kunpeng.service.NFTBlockChainInfoService;
 import io.nftips.kunpeng.vo.NFTInfoSearchVo;
+import io.swagger.models.auth.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -175,5 +177,33 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         }
 
         return nftInfoSearchVo;
+    }
+
+    /**
+     * 模糊搜索
+     *
+     * @param nameOrId NFT分类标识或者分类名称
+     *
+     * @return
+     */
+    @Override
+    public Map<String, Object> fuzzySearch(String nameOrId) {
+        List<NftInfoEntity> list = nftInfoService.lambdaQuery()
+                .select(NftInfoEntity::getCategoryId, NftInfoEntity::getCategoryName)
+                .like(NftInfoEntity::getCategoryId, nameOrId)
+                .or().like(NftInfoEntity::getCategoryName, nameOrId)
+                .or().like(NftInfoEntity::getNtfName, nameOrId)
+                .groupBy(NftInfoEntity::getCategoryId)
+                .groupBy(NftInfoEntity::getCategoryName)
+                .list();
+
+        Integer count = 0;
+        if (list != null) {
+            count = list.size();
+        }
+        Map<String, Object> maps = new HashMap<>(2);
+        maps.put("list", list);
+        maps.put("count", count);
+        return maps;
     }
 }
