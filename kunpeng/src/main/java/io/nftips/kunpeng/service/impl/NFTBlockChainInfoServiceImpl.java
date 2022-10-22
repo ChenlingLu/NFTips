@@ -7,6 +7,7 @@ import io.nftips.kunpeng.orm.entity.NFTMintStatisticsEntity;
 import io.nftips.kunpeng.orm.entity.NftInfoEntity;
 import io.nftips.kunpeng.orm.entity.NftProfitEntity;
 import io.nftips.kunpeng.orm.mapper.NftInfoMapper;
+import io.nftips.kunpeng.orm.mapper.NftTradingInfoMapper;
 import io.nftips.kunpeng.orm.service.NftInfoService;
 import io.nftips.kunpeng.service.NFTBlockChainInfoService;
 import io.nftips.kunpeng.vo.NFTInfoSearchVo;
@@ -33,6 +34,9 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
 
     @Resource
     private NftInfoMapper nftInfoMapper;
+
+    @Resource
+    private NftTradingInfoMapper nftTradingInfoMapper;
 
     /**
      * 根据图像Hash查询数字藏品
@@ -142,7 +146,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         tradeSummary.setLastTransferValue(0.0D);
         tradeSummary.setTotalProfit(0.0D);
         if (isMintNft) {
-            NftProfitEntity nftProfit = nftInfoMapper.statisticsProfit(categoryId);
+            NftProfitEntity nftProfit = nftTradingInfoMapper.statisticsProfit(categoryId);
             if (nftProfit != null) {
                 BeanUtil.copyProperties(nftProfit, tradeSummary);
             }

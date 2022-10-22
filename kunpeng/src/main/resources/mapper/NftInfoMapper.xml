@@ -110,61 +110,7 @@
                 FROM mint
             )
     </select>
-    <select id="statisticsProfit" resultType="io.nftips.kunpeng.orm.entity.NftProfitEntity">
-        WITH trans AS (
-            SELECT COUNT(*) transactions,
-                   CONVERT(SUM(bnti.amount), DECIMAL ( 10, 2 )) total_profit,
-                   CONVERT(CONVERT(SUM(bnti.amount), DECIMAL ( 10, 2 )) / IFNULL(COUNT(*), 1), DECIMAL ( 10, 2 )) avg_value
-            FROM bsn_nft_trading_info bnti
-            WHERE bnti.category_id = #{categoryId}
-              AND bnti.trading_type = "transfer_nft"
-        ),
-        account AS (
-            SELECT COUNT(*) accounts
-            FROM (
-                   SELECT DISTINCT sender
-                   FROM bsn_nft_trading_info t1
-                   WHERE t1.category_id = #{categoryId}
-                   UNION
-                   SELECT DISTINCT recipient
-                   FROM bsn_nft_trading_info t2
-                   WHERE t2.category_id = #{categoryId}
-             ) t3
-         ),
-         last_2trade_info AS (
-             SELECT c.amount,
-                    c.occur_time
-             FROM bsn_nft_trading_info c
-             WHERE c.category_id =#{categoryId}
-             ORDER BY c.occur_time DESC
-             LIMIT 2
-         ),
-         last_trade_info AS (
-             SELECT cc.amount,
-                    cc.occur_time
-             FROM last_2trade_info cc
-             ORDER BY cc.occur_time DESC LIMIT 1
-         ),
-         diff_value AS (
-             SELECT
-                 CASE (SELECT COUNT(*) FROM last_2trade_info)
-                     WHEN 0 THEN 0
-                     WHEN 1 THEN CONVERT(lti.amount, DECIMAL ( 10, 2 ))
-                     ELSE CONVERT(lti.amount -
-                                  (SELECT dd.amount FROM last_2trade_info dd ORDER BY dd.occur_time ASC LIMIT 1),
-                         DECIMAL ( 10, 2 ))
-                     END AS pre_transfer_value_diff
-             FROM last_trade_info lti
-         )
-    SELECT trans.transactions ,
-           trans.total_profit,
-           trans.avg_value,
-           account.accounts,
-           lti.amount last_transfer_value,
-           lti.occur_time last_transfer_value,
-           dv.pre_transfer_value_diff
-    FROM trans, account, last_trade_info lti ,diff_value dv;
-    </select>
+
     <select id="statisticsHoldingPeriod" resultType="io.nftips.kunpeng.orm.entity.HoldingPeriodEntity">
 
     </select>
