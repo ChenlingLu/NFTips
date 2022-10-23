@@ -12,22 +12,17 @@ public interface DataAnalyMapper {
 
     List<PriceHistory> selectPriceHistory(
             @Param("categoryId") String categoryId,
-            @Param("nftName") String nftName,
             @Param("passedDay") String passedDay);
 
     List<AverageRevenue> selectAverageRevenueList( @Param("categoryId") String categoryId,
-                                                   @Param("nftName") String nftName,
                                                    @Param("passedDay") String passedDay);
 
     Double selectTotalRevenue(@Param("categoryId") String categoryId,
-                              @Param("nftName") String nftName,
                               @Param("passedDay") String passedDay);
 
     List<TradingNumber> selectTradingNumberList(@Param("categoryId") String categoryId,
-                                                @Param("nftName") String nftName,
                                                 @Param("passedDay") Integer passedDay);
 
     Integer selectTotalTradingNum(@Param("categoryId") String categoryId,
-                                 @Param("nftName") String nftName,
                                  @Param("passedDay") String passedDay);
 }

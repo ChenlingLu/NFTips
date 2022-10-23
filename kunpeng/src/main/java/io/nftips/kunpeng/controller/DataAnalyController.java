@@ -43,10 +43,9 @@ public class DataAnalyController {
      */
     @RequestMapping(value = {Data_Analy_V1})
     public void DataAnalysis(@RequestParam(value = "day", defaultValue = "1") Integer day,
-                             @RequestParam("categoryId") String categoryId,
-                             @RequestParam("nftName")String nftName) {
+                             @RequestParam("categoryId") String categoryId) {
 
-       DataAnalyVo dataAnalyVo = dataAnalyService.statisticTradeInfo(day,categoryId,nftName);
+       DataAnalyVo dataAnalyVo = dataAnalyService.statisticTradeInfo(day,categoryId);
 
     }
 

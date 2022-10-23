@@ -29,7 +29,7 @@ public class DataAnalyServiceImpl implements DataAnalyService {
      * @return
      */
     @Override
-    public DataAnalyVo statisticTradeInfo(Integer passedDay, String categoryId, String nftName) {
+    public DataAnalyVo statisticTradeInfo(Integer passedDay, String categoryId) {
 
         // 当前时间
         String currentTimeString = DataUtils.getCurrentTimeString();
@@ -40,22 +40,22 @@ public class DataAnalyServiceImpl implements DataAnalyService {
 
         // 查询categoryId 对应passedDay的历史价格信息
 
-        List<PriceHistory> priceHistoryList = dataAnalyMapper.selectPriceHistory(categoryId, nftName, pastDate);
+        List<PriceHistory> priceHistoryList = dataAnalyMapper.selectPriceHistory(categoryId, pastDate);
 
         // 查询categoryId 对应passedDay的收益情况
-        List<AverageRevenue> averageRevenueList = dataAnalyMapper.selectAverageRevenueList(categoryId, nftName, pastDate);
+        List<AverageRevenue> averageRevenueList = dataAnalyMapper.selectAverageRevenueList(categoryId, pastDate);
         //总收益
-        Double totalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, nftName, pastDate);
+        Double totalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, pastDate);
         //对比passedDay之前
-        Double oldTotalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, nftName, oldPastDate);
+        Double oldTotalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, oldPastDate);
 
 
         // passedDay内交易次数
-        List<TradingNumber> tradingNumberList = dataAnalyMapper.selectTradingNumberList(categoryId, nftName, passedDay);
+        List<TradingNumber> tradingNumberList = dataAnalyMapper.selectTradingNumberList(categoryId, passedDay);
         //总次数
-        Integer totalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, nftName, pastDate);
+        Integer totalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, pastDate);
         //对比passedDay之前
-        Integer oldTotalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, nftName, oldPastDate);
+        Integer oldTotalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, oldPastDate);
 
 
         //历史交易次数
