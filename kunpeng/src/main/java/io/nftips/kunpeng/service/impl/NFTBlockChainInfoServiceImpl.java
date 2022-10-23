@@ -10,6 +10,7 @@ import io.nftips.kunpeng.orm.mapper.NftInfoMapper;
 import io.nftips.kunpeng.orm.mapper.NftTradingInfoMapper;
 import io.nftips.kunpeng.orm.service.NftInfoService;
 import io.nftips.kunpeng.service.NFTBlockChainInfoService;
+import io.nftips.kunpeng.util.NumUtils;
 import io.nftips.kunpeng.vo.NFTInfoSearchVo;
 import io.swagger.models.auth.In;
 import org.slf4j.Logger;
@@ -161,11 +162,11 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
 
         Map<String, Object> middle = new HashMap<>(2);
         middle.put("radio", "0%");
-        middle.put("tip", "<365d");
+        middle.put("tip", "<28d");
 
         Map<String, Object> small = new HashMap<>(2);
         small.put("radio", "0%");
-        small.put("tip", "<365d");
+        small.put("tip", "<7d");
 
         holdingPeriod.setLager(larger);
         holdingPeriod.setMiddle(middle);
@@ -174,9 +175,9 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         if (isMintNft) {
             HoldingPeriodEntity holdingPeriodEntity = nftInfoMapper.statisticsHoldingPeriod(categoryId);
             if (holdingPeriodEntity != null) {
-                larger.put("radio", holdingPeriodEntity.getLagerRadio());
-                middle.put("radio", holdingPeriodEntity.getMiddleRadio());
-                small.put("radio", holdingPeriodEntity.getSmallRadio());
+                larger.put("radio", NumUtils.getPercent(holdingPeriodEntity.getLagerRadio()));
+                middle.put("radio", NumUtils.getPercent(holdingPeriodEntity.getMiddleRadio()));
+                small.put("radio", NumUtils.getPercent(holdingPeriodEntity.getSmallRadio()));
             }
         }
 
