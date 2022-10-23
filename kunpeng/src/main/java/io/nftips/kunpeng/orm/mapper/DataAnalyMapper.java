@@ -2,6 +2,7 @@ package io.nftips.kunpeng.orm.mapper;
 
 import io.nftips.kunpeng.orm.entity.NftResaleTimeEntity;
 import io.nftips.kunpeng.vo.AverageRevenue;
+import io.nftips.kunpeng.vo.CurrentPriceAndEnValue;
 import io.nftips.kunpeng.vo.PriceHistory;
 import io.nftips.kunpeng.vo.TradingNumber;
 import org.apache.ibatis.annotations.Mapper;
@@ -37,4 +38,5 @@ public interface DataAnalyMapper {
                                          @Param("passedDay") String passedDay);
 
 
+    CurrentPriceAndEnValue selectCurrentPriceAndEnValue(String categoryId);
 }

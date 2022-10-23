@@ -3,8 +3,6 @@ package io.nftips.kunpeng.vo;
 import lombok.Data;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Data
@@ -15,6 +13,7 @@ public class DataAnalyVo {
      */
     private String categoryId;
 
+    private CurrentPriceAndEnValue currentPriceAndEnValue;
     /**
      * 历史价格
      */

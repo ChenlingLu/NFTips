@@ -24,9 +24,9 @@ logging:
 # Mybatis配置
 mybatis:
     mapperLocations: classpath:mapper/**/*.xml
-    configuration:
-        map-underscore-to-camel-case: true
-        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    configuration:
+#        map-underscore-to-camel-case: true
+#        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #
 spring:
     # 环境 dev|test|pro
