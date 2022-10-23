@@ -59,6 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/front/public" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -73,6 +74,9 @@
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="io.nftips.kunpeng.vo" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/front/public" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.KunpengApplication">
@@ -130,7 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666422550527</updated>
       <workItem from="1666422552658" duration="10627000" />
-      <workItem from="1666485174320" duration="14026000" />
+      <workItem from="1666485174320" duration="15382000" />
     </task>
     <servers />
   </component>
@@ -150,11 +154,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1666509248078">
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1666510226088">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1666422708882" />
-    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.25.1440.875@0.25.1440.875" timestamp="1666509248078" />
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1666510062329" />
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.25.1440.875@0.25.1440.875" timestamp="1666510226088" />
     <state width="196" height="410" key="Git.Branch.Popup" timestamp="1666453739907">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
