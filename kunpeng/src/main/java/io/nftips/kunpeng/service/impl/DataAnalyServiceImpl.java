@@ -96,6 +96,9 @@ public class DataAnalyServiceImpl implements DataAnalyService {
 
         CompletableFuture.allOf(priceHistoryListFuture, averageRevenueListFuture, tradingNumberListFuture).join();
 
+        if (dataAnalyVo.getPriceHistory().size() == 0) {
+            return dataAnalyVo;
+        }
         List<ChangedHandsDay> changedHandsDayList = new ArrayList<>();
 
         ChangedHandsDay changedHandsDay1 = new ChangedHandsDay();
@@ -128,8 +131,8 @@ public class DataAnalyServiceImpl implements DataAnalyService {
         historyTotalGains2.setTime(new Timestamp(System.currentTimeMillis() - 5000));
         historyTotalGains.add(historyTotalGains1);
         historyTotalGains.add(historyTotalGains2);
-        dataAnalyVo.setTotalGains(gains1+gains2);
-        dataAnalyVo.setBeforeGains("+"+new Random().nextInt(5000));
+        dataAnalyVo.setTotalGains(gains1 + gains2);
+        dataAnalyVo.setBeforeGains("+" + new Random().nextInt(5000));
         //历史交易次数
         dataAnalyVo.setHistoryTotalGains(historyTotalGains);
         return dataAnalyVo;
