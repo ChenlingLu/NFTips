@@ -1,5 +1,6 @@
 package io.nftips.kunpeng.orm.mapper;
 
+import io.nftips.kunpeng.orm.entity.NftResaleTimeEntity;
 import io.nftips.kunpeng.vo.AverageRevenue;
 import io.nftips.kunpeng.vo.PriceHistory;
 import io.nftips.kunpeng.vo.TradingNumber;
@@ -29,4 +30,11 @@ public interface DataAnalyMapper {
 
     Integer selectTotalTradingNum(@Param("categoryId") String categoryId,
                                  @Param("passedDay") String passedDay);
+
+
+    List<NftResaleTimeEntity> resaleTime(@Param("categoryId") String categoryId,
+                                         @Param("nftName") String nftName,
+                                         @Param("passedDay") String passedDay);
+
+
 }
