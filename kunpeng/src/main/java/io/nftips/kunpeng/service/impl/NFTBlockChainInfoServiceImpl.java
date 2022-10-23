@@ -162,11 +162,11 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
 
         Map<String, Object> middle = new HashMap<>(2);
         middle.put("radio", "0%");
-        middle.put("tip", "<365d");
+        middle.put("tip", "<28d");
 
         Map<String, Object> small = new HashMap<>(2);
         small.put("radio", "0%");
-        small.put("tip", "<365d");
+        small.put("tip", "<7d");
 
         holdingPeriod.setLager(larger);
         holdingPeriod.setMiddle(middle);
