@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20e5191c-9c51-4ba0-831e-9abe7b7e1b1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/controller/DataAnalyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/controller/DataAnalyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/orm/mapper/DataAnalyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/orm/mapper/DataAnalyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/DataAnalyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/DataAnalyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/impl/DataAnalyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/impl/DataAnalyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kunpeng/src/main/resources/mapper/DataAnalyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/resources/mapper/DataAnalyMapper.xml" afterDir="false" />
     </list>
@@ -136,7 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666422550527</updated>
       <workItem from="1666422552658" duration="10627000" />
-      <workItem from="1666485174320" duration="6185000" />
+      <workItem from="1666485174320" duration="6761000" />
     </task>
     <servers />
   </component>
@@ -246,7 +244,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/impl/DataAnalyServiceImpl.java</url>
-          <line>57</line>
+          <line>59</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

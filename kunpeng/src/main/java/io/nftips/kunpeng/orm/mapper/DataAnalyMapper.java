@@ -12,16 +12,20 @@ public interface DataAnalyMapper {
 
     List<PriceHistory> selectPriceHistory(
             @Param("categoryId") String categoryId,
-            @Param("passedDay") String passedDay);
+            @Param("passedDay") String passedDay,
+            @Param("currentDay") String currentDay);
 
     List<AverageRevenue> selectAverageRevenueList( @Param("categoryId") String categoryId,
-                                                   @Param("passedDay") String passedDay);
+                                                   @Param("passedDay") String passedDay,
+                                                   @Param("currentDay") String currentDay);
 
     Double selectTotalRevenue(@Param("categoryId") String categoryId,
-                              @Param("passedDay") String passedDay);
+                              @Param("passedDay") String passedDay,
+                              @Param("oldPastDate") String oldPastDate);
 
     List<TradingNumber> selectTradingNumberList(@Param("categoryId") String categoryId,
-                                                @Param("passedDay") Integer passedDay);
+                                                @Param("passedDay") String passedDay,
+                                                @Param("currentDay") String currentDay);
 
     Integer selectTotalTradingNum(@Param("categoryId") String categoryId,
                                  @Param("passedDay") String passedDay);

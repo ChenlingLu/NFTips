@@ -8,7 +8,7 @@
         FROM bsn_nft_trading_info
         WHERE category_id=#{categoryId}
          and occur_time>=#{passedDay}
-         and occur_time&lt;=#{passedDay}
+         and occur_time&lt;=#{currentDay}
 
     </select>
 
@@ -18,7 +18,7 @@
         sum(a.amount) AS  `revenue`
         from bsn_nft_trading_info a
         where  a.category_id=#{categoryId}
-        and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{passedDay}
+        and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{currentDay}
         GROUP BY date_format(a.occur_time,'%Y-%m-%d')
 
     </select>
@@ -28,7 +28,7 @@
         sum( a.amount) AS  `totalRevenue`
         from bsn_nft_trading_info a
         where  a.category_id=#{categoryId}
-        and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{passedDay}
+        and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{oldPastDate}
     </select>
 
     <select id="selectTradingNumberList" resultType="io.nftips.kunpeng.vo.TradingNumber">
