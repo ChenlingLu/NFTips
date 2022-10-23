@@ -2,7 +2,6 @@ package io.nftips.kunpeng.service;
 
 import io.nftips.kunpeng.vo.NFTInfoSearchVo;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,8 +30,11 @@ public interface NFTBlockChainInfoService {
 
     /**
      * 模糊搜索
+     *
      * @param nameOrId NFT分类标识或者分类名称
+     *
      * @return
      */
     Map<String, Object> fuzzySearch(String nameOrId);
+
 }

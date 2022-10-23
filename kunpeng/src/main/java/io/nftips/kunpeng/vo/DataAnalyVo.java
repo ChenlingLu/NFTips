@@ -89,8 +89,7 @@ public class DataAnalyVo {
         private Timestamp time;
 
         /**
-         * 单位时间内涨幅
-         * 比如天数为2 则展示
+         * 单位时间内涨幅 比如天数为2 则展示
          */
         private Double gains;
 
