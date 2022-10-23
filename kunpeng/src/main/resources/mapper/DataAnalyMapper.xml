@@ -57,4 +57,53 @@
   WHERE category_id=#{categoryId} ORDER BY occur_time desc limit 1
 
     </select>
+    <select id="resaleTime" resultType="io.nftips.kunpeng.orm.entity.NftResaleTimeEntity">
+        WITH now_sale AS (
+            SELECT DATE_FORMAT(a.occur_time, '%Y-%m-%d') as now_day,
+                   DATE_FORMAT(a.occur_time, '%Y-%m')    as now_month,
+                   DATE_FORMAT(a.occur_time, '%Y')       as now_year,
+                   COUNT(1)                              as now_resale_count
+            FROM bsn_nft_trading_info a
+            WHERE a.category_id = #{categoryId}
+            GROUP BY DATE_FORMAT(a.occur_time, '%Y-%m-%d'),
+                     DATE_FORMAT(a.occur_time, '%Y-%m'),
+                     DATE_FORMAT(a.occur_time, '%Y')
+            ORDER BY DATE_FORMAT(a.occur_time, '%Y-%m-%d') ASC
+        ),
+         old_sale AS (
+             SELECT DATE_FORMAT(DATE_ADD(a.occur_time, INTERVAL #{passedDay} DAY), '%Y-%m-d') as now_day,
+                    COUNT(1)                                                                  as old_resale_count
+             FROM bsn_nft_trading_info a
+             WHERE a.category_id = #{categoryId}
+             GROUP BY DATE_FORMAT(DATE_ADD(a.occur_time, INTERVAL #{passedDay} DAY), '%Y-%m-d')
+             ORDER BY DATE_FORMAT(DATE_ADD(a.occur_time, INTERVAL #{passedDay} DAY), '%Y-%m-d')
+         )
+        SELECT now_sale.now_day,
+               now_sale.now_month,
+               now_sale.now_year,
+               CASE
+                    WHEN now_sale.now_resale_count IS NULL
+                       OR now_sale.now_resale_count = 0 THEN
+                       0
+                   ELSE now_sale.now_resale_count
+                   END times,
+               CASE
+                   WHEN old_sale.old_resale_count IS NULL
+                       OR old_sale.old_resale_count = 0 THEN
+                       0
+                   ELSE old_sale.old_resale_count
+                   END old_times,
+               CASE
+                   WHEN old_sale.old_resale_count IS NULL
+                       OR old_sale.old_resale_count = 0 THEN
+                       0
+                   ELSE (now_sale.now_resale_count - old_sale.old_resale_count)
+                   END diff_times
+        FROM now_sale
+                 LEFT JOIN old_sale
+                           ON now_sale.now_day = old_sale.now_day
+        ORDER BY now_sale.now_year DESC,
+                 now_sale.now_month DESC,
+                 now_sale.now_day ASC
+    </select>
 </mapper>

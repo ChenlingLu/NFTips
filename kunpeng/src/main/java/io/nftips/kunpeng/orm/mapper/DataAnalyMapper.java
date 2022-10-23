@@ -35,6 +35,7 @@ public interface DataAnalyMapper {
 
 
     List<NftResaleTimeEntity> resaleTime(@Param("categoryId") String categoryId,
+                                         @Param("isByHour") boolean isByHour,
                                          @Param("passedDay") String passedDay);
 
 
