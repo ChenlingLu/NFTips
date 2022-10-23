@@ -83,7 +83,6 @@ export default {
         width:250px;
         height: 150px;
         display: inline-block;
-        top: 344px;
   
 }
 }

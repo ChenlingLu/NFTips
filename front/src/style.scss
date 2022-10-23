@@ -338,3 +338,19 @@ template {
 [hidden] {
   display: none;
 }
+
+
+.container{
+  display: flex;
+  gap: 32px;
+  padding: 20px;
+  max-width: 1344px;
+  margin: 0 auto;
+}
+.left{
+  width: 76%;
+  border-right: 1px solid #797979;
+}
+.right{
+  flex: 1;
+}

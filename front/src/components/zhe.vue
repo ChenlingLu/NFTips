@@ -64,12 +64,9 @@ export default {
 
 <style scoped lang="scss">
 .zhe{
-    position: absolute;
-    bottom: 0;
-    left: 0;
     .echarts {
         position: relative;
-        width:1050px        ;
+        width:1050px;
         height: 250px;
   
 }

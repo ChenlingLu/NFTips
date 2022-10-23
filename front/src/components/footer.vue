@@ -1,8 +1,10 @@
 <template>
-   <p class="home_foot">{{homeInfo.foot}}</p>
-    <span class="home_pow">
-      <img :src="tidb" alt="">
-    </span>
+  <div class="footer">
+    <p class="home_foot">{{homeInfo.foot}}</p>
+     <span class="home_pow">
+       <img :src="tidb" alt="">
+     </span>
+  </div>
 </template>
 
 <script setup>
@@ -16,28 +18,26 @@ const homeInfo = reactive({
 </script>
 
 <style scoped lang="scss">
+.footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 20px 0;
+}
   .home_foot{
-    position: absolute;
     color: #7C7C7C;
-    height: 15px;
-    left: 85px;
-       bottom: 24px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    line-height: 15px;
+    margin: 0;
   }
   .home_pow{
-    position: absolute;
      color: #7C7C7C;
     height: 24px;
-    left: 899px;
-       bottom: 30px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    line-height: 15px;
   }
 </style>

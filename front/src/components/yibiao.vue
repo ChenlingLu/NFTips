@@ -1,6 +1,6 @@
 <template>
   <section class="yibiao">
-      <p class="yibiao_title">Buying Index</p>
+      <div class="yibiao_title">Buying Index</div>
       <div class="echarts" ref="chart" id= "yibiao" />
      <p class="small">
          Buying Index = transaction times * 30% + avg transaction time * 20% + avg price increase/decrease * 50% 
@@ -68,34 +68,24 @@ export default {
 
 <style scoped lang="scss">
 .yibiao{
+  border-bottom: 1px solid #797979;
     .small{
         font-size: 12px;
         line-height: 15px;
-        position: absolute;
-        top: 250px;
         width: 80%;
-        transform: translate(-50%);
-        left: 50%;
         color: #7C7C7C;
     }
     .yibiao_title{
         font-size: 24px;
-        line-height: 29px;
         color: #FFFFFF;
-        top: 18px;
-        position: absolute;
-        left: 20px;
+        margin-bottom: 10px;
     }
     
     .echarts {
-        position: absolute;
         width:250px;
-        height: 250px;
-        top: 32px;
-        position: absolute;
-        left: 50%;
-        top: 32px;
-        transform: translate(-50%);
+        height: 200px;
+        background: #fff;
+        border-radius: 6px;
 }
 }
 

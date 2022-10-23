@@ -66,7 +66,7 @@ export default {
 .three{
     .echarts {
         position: relative;
-        width:650px        ;
+        width:500px;
         height: 150px;
   
 }
