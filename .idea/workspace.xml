@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20e5191c-9c51-4ba0-831e-9abe7b7e1b1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/doc/API文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/API文档.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +98,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KunpengApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kunpeng" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.nftips.kunpeng.KunpengApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestDataAnalyController.test" />
@@ -115,7 +122,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666422550527</updated>
-      <workItem from="1666422552658" duration="9485000" />
+      <workItem from="1666422552658" duration="10627000" />
     </task>
     <servers />
   </component>
