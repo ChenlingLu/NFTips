@@ -178,6 +178,6 @@
                lti.amount last_transfer_value,
                lti.occur_time last_transfer_value,
                dv.pre_transfer_value_diff
-        FROM trans, account, last_trade_info lti ,diff_value dv;
+        FROM trans, account, last_trade_info lti ,diff_value dv
     </select>
 </mapper>
