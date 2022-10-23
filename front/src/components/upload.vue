@@ -2,8 +2,8 @@
 <el-upload
     class="upload-demo"
     drag
-    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-    multiple
+    action="/query/image/v1"
+    :on-change="handleUpload"
   >
     <el-icon class="el-icon--upload"><upload-filled /></el-icon>
     <div class="el-upload__text">
@@ -18,6 +18,9 @@ import { UploadFilled } from '@element-plus/icons-vue'
 
 import { ElUpload } from 'element-plus'
 
+const handleUpload = (e) => {
+  console.log(e);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -25,7 +28,6 @@ import { ElUpload } from 'element-plus'
     :deep(.el-upload-dragger){
         background-color:unset;
         border:unset;
-        height: 48vh;
     }
 }
 </style>>

@@ -5,11 +5,12 @@
     <div class="container">
       <div class="left">
         <p class="home_title">{{homeInfo.title}}</p>
-        <el-select class="home_select" v-model="homeInfo.selectValue" filterable remote reserve-keyword
-          placeholder="NFT name / Denom name" remote-show-suffix :remote-method="remoteMethod" :loading="loading"
-          :suffix-icon="Search" :suffix-transition=false>
-          <el-option v-for="item in homeInfo.options" :key="item.value" :label="item.label" :value="item.value" />
-        </el-select>
+        <el-input class="home_select" v-model="homeInfo.selectValue"
+          placeholder="NFT id" 
+          :suffix-icon="Search" :suffix-transition=false
+          @change="handleEnter">
+          <!-- <el-option v-for="item in homeInfo.options" :key="item.value" :label="item.label" :value="item.value" /> -->
+        </el-input>
 
         <p class="home_drag">{{homeInfo.drag}}</p>
 
@@ -29,6 +30,8 @@ import { Search } from '@element-plus/icons-vue'
 import { reactive, onMounted } from "vue"
 import { ElSelect } from 'element-plus'
 import Footer from "@/components/footer.vue"
+
+import router from '../../router';
 
 import Upload from "@/components/upload.vue"
 import Header from "@/components/header.vue"
@@ -52,6 +55,16 @@ onMounted(() => {
     return { value: `${item}`, label: `${item}` }
   })
 })
+
+const handleEnter = () => {
+  router.push({
+    path:'/detail',
+    query:{
+      id: homeInfo.selectValue
+    }
+  })
+  
+}
 
 const remoteMethod = (query) => {
   if (query) {
@@ -116,10 +129,7 @@ const states = [
 
   .home_upload {
     box-sizing: border-box;
-
-    width: 984px;
-    height: 48vh;
-
+    margin-right: 32px;
     background: rgba(194, 194, 194, 0.3);
     border: 1px dashed #848484;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
