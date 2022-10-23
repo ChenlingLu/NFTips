@@ -7,15 +7,18 @@ import io.nftips.kunpeng.orm.entity.NFTMintStatisticsEntity;
 import io.nftips.kunpeng.orm.entity.NftInfoEntity;
 import io.nftips.kunpeng.orm.entity.NftProfitEntity;
 import io.nftips.kunpeng.orm.mapper.NftInfoMapper;
+import io.nftips.kunpeng.orm.mapper.NftTradingInfoMapper;
 import io.nftips.kunpeng.orm.service.NftInfoService;
 import io.nftips.kunpeng.service.NFTBlockChainInfoService;
 import io.nftips.kunpeng.vo.NFTInfoSearchVo;
+import io.swagger.models.auth.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +34,9 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
 
     @Resource
     private NftInfoMapper nftInfoMapper;
+
+    @Resource
+    private NftTradingInfoMapper nftTradingInfoMapper;
 
     /**
      * 根据图像Hash查询数字藏品
@@ -109,6 +115,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         BeanUtil.copyProperties(nftInfoEntity, baseInfo);
         baseInfo.setIssueCount(mintNftCount);
         baseInfo.setIssueStep("mint_nft");
+        baseInfo.setHoldingHuman(0L);
         if ("issue_denom".equals(nftInfoEntity.getTradingType())) {
             baseInfo.setSender(nftInfoEntity.getSender());
             baseInfo.setIssueStep("issue_denom");
@@ -121,7 +128,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
 
         if (isMintNft) {
             NFTMintStatisticsEntity statisticsEntity = nftInfoMapper.statisticsBaseInfo(categoryId);
-            if (statisticsEntity == null) {
+            if (statisticsEntity != null) {
                 BeanUtil.copyProperties(statisticsEntity, baseInfo);
             }
             Long realTradeCount = nftInfoMapper.statisticsRealTradeCount(categoryId);
@@ -139,7 +146,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         tradeSummary.setLastTransferValue(0.0D);
         tradeSummary.setTotalProfit(0.0D);
         if (isMintNft) {
-            NftProfitEntity nftProfit = nftInfoMapper.statisticsProfit(categoryId);
+            NftProfitEntity nftProfit = nftTradingInfoMapper.statisticsProfit(categoryId);
             if (nftProfit != null) {
                 BeanUtil.copyProperties(nftProfit, tradeSummary);
             }
@@ -174,5 +181,33 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         }
 
         return nftInfoSearchVo;
+    }
+
+    /**
+     * 模糊搜索
+     *
+     * @param nameOrId NFT分类标识或者分类名称
+     *
+     * @return
+     */
+    @Override
+    public Map<String, Object> fuzzySearch(String nameOrId) {
+        List<NftInfoEntity> list = nftInfoService.lambdaQuery()
+                .select(NftInfoEntity::getCategoryId, NftInfoEntity::getCategoryName)
+                .like(NftInfoEntity::getCategoryId, nameOrId)
+                .or().like(NftInfoEntity::getCategoryName, nameOrId)
+                .or().like(NftInfoEntity::getNtfName, nameOrId)
+                .groupBy(NftInfoEntity::getCategoryId)
+                .groupBy(NftInfoEntity::getCategoryName)
+                .list();
+
+        Integer count = 0;
+        if (list != null) {
+            count = list.size();
+        }
+        Map<String, Object> maps = new HashMap<>(2);
+        maps.put("list", list);
+        maps.put("count", count);
+        return maps;
     }
 }

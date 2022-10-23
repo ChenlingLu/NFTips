@@ -23,6 +23,10 @@ public class NftProfitEntity {
      */
     private Double lastTransferValue;
     /**
+     * 与前一次的差值
+     */
+    private Double preTransferValueDiff;
+    /**
      * 累积收益
      */
     private Double totalProfit;
@@ -31,11 +35,16 @@ public class NftProfitEntity {
      */
     private Double avgValue;
     /**
-     * 交易数
+     * 交易次数
      */
-    private Long transactions;
+    private Integer transactions;
+
     /**
-     * 交易账户
+     * 参与交易的账户数
      */
-    private Long account;
+    private Integer accounts;
+    /**
+     * 购买指数
+     */
+    private Integer buyingIndex;
 }

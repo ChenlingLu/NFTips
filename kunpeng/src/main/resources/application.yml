@@ -39,9 +39,8 @@ spring:
     jackson:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
-    web:
-        resources:
-            static-locations: classpath:/static/,classpath:/views/
+    resources:
+        static-locations: classpath:/public/,classpath:/views/,classpath:/static/
     servlet:
         multipart:
             max-file-size: 200MB

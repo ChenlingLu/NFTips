@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.nftips.kunpeng.common.MappingPath.CATEGORY_ID_SEARCH_V1;
+import static io.nftips.kunpeng.common.MappingPath.CATEGORY_LIST_SEARCH_V1;
 import static io.nftips.kunpeng.util.CodeEnum.NOT_FOUND_NFT;
 
 /**
@@ -44,7 +48,14 @@ public class SearchController {
         CommonUtil.printResult(response, result);
     }
 
-    public void fuzzyQueryBaseInfo() {
-
+    @RequestMapping(value = {CATEGORY_LIST_SEARCH_V1})
+    @ResponseBody
+    public void fuzzyQueryBaseInfo(@RequestParam(value = Constants.NAME) String name) {
+        Map<String, Object> res = nftBlockChainInfoService.fuzzySearch(name);
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("data", res);
+        R r = R.ok(map);
+        String result = JSONUtil.toJsonStr(r);
+        CommonUtil.printResult(response, result);
     }
 }

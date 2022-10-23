@@ -37,15 +37,6 @@ public interface NftInfoMapper extends BaseMapper<NftInfoEntity> {
     Long statisticsRealTradeCount(@Param("categoryId") String categoryId);
 
     /**
-     * 统计收益
-     *
-     * @param categoryId
-     *
-     * @return
-     */
-    NftProfitEntity statisticsProfit(@Param("categoryId") String categoryId);
-
-    /**
      * 统计持续持有时间
      *
      * @param categoryId

@@ -1,11 +1,14 @@
 package io.nftips.kunpeng.orm.entity;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
 /**
  * @author zhoujunwen
  * @date 2022-10-2022/10/22 下午3:49
  **/
+@Data
 public class NFTMintStatisticsEntity {
     /**
      * 发行能量值
@@ -40,5 +43,10 @@ public class NFTMintStatisticsEntity {
     /**
      * 发行数量
      */
-    private Integer issueCount;
+    private Long issueCount;
+
+    /**
+     * 持有人
+     */
+    private Long holdingHuman;
 }

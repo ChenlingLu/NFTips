@@ -1,5 +1,7 @@
 package io.nftips.kunpeng.orm.mapper;
 
+import io.nftips.kunpeng.orm.entity.ExplainEntity;
+import io.nftips.kunpeng.orm.entity.NftProfitEntity;
 import io.nftips.kunpeng.orm.entity.NftTopInfoEntity;
 import io.nftips.kunpeng.orm.entity.NftTradingInfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -27,10 +29,13 @@ public interface NftTradingInfoMapper extends BaseMapper<NftTradingInfoEntity> {
      */
     List<NftTopInfoEntity> selectTopN(@Param("topn") Integer n);
 
+
     /**
-     * 执行计划结果
-     * @param n
+     * 统计收益
+     *
+     * @param categoryId
+     *
      * @return
      */
-    List<String> selectTopN_Explain(@Param("topn") Integer n);
+    NftProfitEntity statisticsProfit(@Param("categoryId") String categoryId);
 }

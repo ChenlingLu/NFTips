@@ -7,4 +7,5 @@ package io.nftips.kunpeng.common;
 public class Constants {
     public static final String IMAGE = "image";
     public static final String CATEGORY_ID = "category_id";
+    public static final String NAME = "name";
 }

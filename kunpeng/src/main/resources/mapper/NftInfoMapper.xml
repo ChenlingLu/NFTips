@@ -44,18 +44,32 @@
     <sql id="Base_Column_List">
         gmt_create,
         gmt_modify,
-        id, trading_hash, trading_status, height, energy_value, remark, trading_type, category_id, category_name, ntf_id, ntf_name, sender, recipient, chain_link, chain_data, chain_link_hash, `code`, data_origin, `events`, occur_time
+        id, trading_hash, trading_status, height, energy_value,
+        remark, trading_type, category_id, category_name, ntf_id,
+        ntf_name, sender, recipient, chain_link, chain_data,
+        chain_link_hash, `code`, data_origin, `events`, occur_time
     </sql>
     <select id="statisticsBaseInfo" resultMap="BaseStatisticInfoResultMap">
         WITH nft_count AS (
             -- 统计NFT 实际发行数量
             SELECT bni.category_id,
-                   COUNT(*) AS issue_count,
+                   COUNT(*)          AS issue_count,
                    SUM(energy_value) AS issue_energy_value
             FROM bsn_nft_info bni
             WHERE bni.category_id = #{categoryId}
-                  AND bni.trading_type = "mint_nft"
+              AND bni.trading_type = "mint_nft"
         ),
+        holding_human_count AS (
+             SELECT COUNT(*) holding_human
+             FROM (
+                  SELECT ntf_id, recipient, MAX(occur_time) as occur_time
+                  FROM bsn_nft_info
+                  WHERE category_id = #{categoryId}
+                    AND trading_type IN ("mint_nft", "transfer_nft")
+                  GROUP BY ntf_id, recipient
+             ) t
+             GROUP BY t.recipient
+         ),
         nft_base_inf AS (
             SELECT category_id,
                    category_name,
@@ -74,10 +88,9 @@
                b.chain_link,
                b.occur_time,
                c.issue_count,
-               c.issue_energy_value
-        FROM nft_base_inf b
-        LEFT JOIN nft_count c
-            ON b.category_id = c.category_id
+               c.issue_energy_value,
+               COUNT(d.holding_human) holding_human
+        FROM nft_base_inf b, nft_count c , holding_human_count d
     </select>
     <select id="statisticsRealTradeCount" resultType="java.lang.Long">
         WITH mint AS (
@@ -97,9 +110,7 @@
                 FROM mint
             )
     </select>
-    <select id="statisticsProfit" resultType="io.nftips.kunpeng.orm.entity.NftProfitEntity">
 
-    </select>
     <select id="statisticsHoldingPeriod" resultType="io.nftips.kunpeng.orm.entity.HoldingPeriodEntity">
 
     </select>
