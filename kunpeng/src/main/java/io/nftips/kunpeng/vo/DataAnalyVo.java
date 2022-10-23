@@ -111,47 +111,4 @@ public class DataAnalyVo {
 
     }
 
-    @Data
-    @ToString
-    public static class TradingNumber {
-        /**
-         * 时间
-         */
-        private Timestamp time;
-
-        /**
-         * 交易次数（单位时间内）
-         */
-        private Integer tradingNum;
-    }
-
-    @Data
-    @ToString
-    public static class AverageRevenue {
-        /**
-         * 时间
-         */
-        private Timestamp time;
-        /**
-         * 收益（单位时间内）
-         */
-        private BigDecimal revenue;
-
-    }
-
-    /**
-     * 历史价格
-     */
-    @Data
-    @ToString
-    public static class PriceHistory {
-        /**
-         * 时间
-         */
-        private Timestamp time;
-        /**
-         * 价格
-         */
-        private BigDecimal price;
-    }
 }

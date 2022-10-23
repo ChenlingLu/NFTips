@@ -20,7 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20e5191c-9c51-4ba0-831e-9abe7b7e1b1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/kunpeng/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/vo/AverageRevenue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/vo/TradingNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/KunpengApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/KunpengApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/controller/DataAnalyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/controller/DataAnalyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/orm/mapper/DataAnalyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/orm/mapper/DataAnalyMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/DataAnalyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/DataAnalyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/impl/DataAnalyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/service/impl/DataAnalyServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/vo/DataAnalyVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/java/io/nftips/kunpeng/vo/DataAnalyVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/main/resources/mapper/DataAnalyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/main/resources/mapper/DataAnalyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kunpeng/src/test/java/io/nftips/kunpeng/TestDataAnalyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kunpeng/src/test/java/io/nftips/kunpeng/TestDataAnalyController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +63,10 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -64,11 +78,16 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
-  <component name="RunManager" selected="JUnit.TestDataAnalyController.test">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="io.nftips.kunpeng.vo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.KunpengApplication">
     <configuration name="DataAnalyController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.nftips.kunpeng.controller.DataAnalyController" />
       <module name="kunpeng" />
@@ -123,6 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666422550527</updated>
       <workItem from="1666422552658" duration="10627000" />
+      <workItem from="1666485174320" duration="4868000" />
     </task>
     <servers />
   </component>
@@ -139,6 +159,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1666422708882">
@@ -149,25 +170,69 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="196" height="410" key="Git.Branch.Popup/0.0.1440.900@0.0.1440.900" timestamp="1666453739907" />
-    <state width="1398" height="257" key="GridCell.Tab.0.bottom" timestamp="1666453652335">
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1666496474901">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1666453652335" />
-    <state width="1398" height="257" key="GridCell.Tab.0.center" timestamp="1666453652333">
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1666496474901" />
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.25.1440.790@0.25.1440.790" timestamp="1666496281892" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1666496474897">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1666453652333" />
-    <state width="1398" height="257" key="GridCell.Tab.0.left" timestamp="1666453652331">
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1666496474897" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.25.1440.790@0.25.1440.790" timestamp="1666496281890" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1666496474888">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1666453652331" />
-    <state width="1398" height="257" key="GridCell.Tab.0.right" timestamp="1666453652334">
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1666496474888" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.25.1440.790@0.25.1440.790" timestamp="1666496281888" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1666496474900">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1666453652334" />
-    <state x="208" y="28" key="SettingsEditor" timestamp="1666422708154">
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1666496474900" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.25.1440.790@0.25.1440.790" timestamp="1666496281891" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1666496474341">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="208" y="28" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1666422708154" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1666496474341" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.25.1440.790@0.25.1440.790" timestamp="1666496281263" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1666496474338">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1666496474338" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.25.1440.790@0.25.1440.790" timestamp="1666496281260" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1666496474337">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1666496474337" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.25.1440.790@0.25.1440.790" timestamp="1666496281258" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1666496474339">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1666496474339" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.25.1440.790@0.25.1440.790" timestamp="1666496281261" />
+    <state width="1398" height="304" key="GridCell.Tab.2.bottom" timestamp="1666496474346">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.bottom/0.0.1440.900@0.0.1440.900" timestamp="1666496474346" />
+    <state width="1398" height="304" key="GridCell.Tab.2.bottom/0.25.1440.790@0.25.1440.790" timestamp="1666496281291" />
+    <state width="1398" height="304" key="GridCell.Tab.2.center" timestamp="1666496474344">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.center/0.0.1440.900@0.0.1440.900" timestamp="1666496474344" />
+    <state width="1398" height="304" key="GridCell.Tab.2.center/0.25.1440.790@0.25.1440.790" timestamp="1666496281278" />
+    <state width="1398" height="304" key="GridCell.Tab.2.left" timestamp="1666496474342">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.left/0.0.1440.900@0.0.1440.900" timestamp="1666496474342" />
+    <state width="1398" height="304" key="GridCell.Tab.2.left/0.25.1440.790@0.25.1440.790" timestamp="1666496281276" />
+    <state width="1398" height="304" key="GridCell.Tab.2.right" timestamp="1666496474345">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.right/0.0.1440.900@0.0.1440.900" timestamp="1666496474345" />
+    <state width="1398" height="304" key="GridCell.Tab.2.right/0.25.1440.790@0.25.1440.790" timestamp="1666496281279" />
+    <state x="208" y="28" key="SettingsEditor" timestamp="1666485211869">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="208" y="28" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1666485211869" />
   </component>
 </project>

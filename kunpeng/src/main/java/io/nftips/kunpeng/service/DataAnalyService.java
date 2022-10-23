@@ -11,5 +11,6 @@ public interface DataAnalyService {
      *
      * @return
      */
-    DataAnalyVo statisticTradeInfo(Integer passedDay, String categoryId);
+    DataAnalyVo statisticTradeInfo(Integer passedDay, String categoryId,String nftName);
+
 }

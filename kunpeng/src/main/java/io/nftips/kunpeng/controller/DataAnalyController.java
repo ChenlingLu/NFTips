@@ -43,14 +43,10 @@ public class DataAnalyController {
      */
     @RequestMapping(value = {Data_Analy_V1})
     public void DataAnalysis(@RequestParam(value = "day", defaultValue = "1") Integer day,
-                             @RequestParam("categoryId") String categoryId) {
-        // 2
+                             @RequestParam("categoryId") String categoryId,
+                             @RequestParam("nftName")String nftName) {
 
-        // 当前时间
-        String currentTimeString = DataUtils.getCurrentTimeString();
-
-        //近两天
-        String pastDate = DataUtils.getPastDate(2);
+       DataAnalyVo dataAnalyVo = dataAnalyService.statisticTradeInfo(day,categoryId,nftName);
 
     }
 
