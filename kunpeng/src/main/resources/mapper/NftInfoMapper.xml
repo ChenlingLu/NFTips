@@ -112,6 +112,37 @@
     </select>
 
     <select id="statisticsHoldingPeriod" resultType="io.nftips.kunpeng.orm.entity.HoldingPeriodEntity">
+        WITH diff_time AS (
+            SELECT b.occur_time,
+                   b.pre,
+                   CASE
+                       WHEN b.pre IS NULL
+                           OR b.pre = 0 THEN
+                           TIMESTAMPDIFF(SECOND, b.occur_time, CURRENT_TIMESTAMP)
+                       ELSE
+                           TIMESTAMPDIFF(SECOND, b.occur_time, b.pre)
+                       END diff_time
+            FROM (
+                     SELECT t.occur_time, @pre AS pre, @pre := t.occur_time AS diff
+                     FROM (
+                              SELECT occur_time
+                              FROM bsn_nft_info
+                              WHERE category_id = #{categoryId}
+                                AND trading_type IN ("mint_nft")
+                              ORDER BY occur_time DESC
+                          ) t,
+                          (SELECT @pre := 0) r
+                 ) b
+        ),
+        ttotal AS (
+            SELECT COUNT(*) cnt
+            FROM diff_time dt
+        )
+        SELECT
+            CONVERT(SUM(IF(dt.diff_time &lt;= 604800, 1, 0)) / IF(t.cnt, t.cnt, 1), DECIMAL(10,2)) as small_radio,
+            CONVERT(SUM(IF(dt.diff_time &gt; 604800 AND dt.diff_time &lt;= 2419200,1,0)) / IF(t.cnt, t.cnt, 1), DECIMAL(10,2)) as middle_radio,
+            CONVERT(SUM(IF(dt.diff_time &gt; 2419200,1,0)) / IF(t.cnt, t.cnt, 1), DECIMAL(10,2)) as lager_radio
+        FROM  diff_time dt,ttotal t
 
     </select>
 
