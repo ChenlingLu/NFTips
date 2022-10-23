@@ -9,7 +9,9 @@
 > - [snail](https://github.com/AllureCode)
 
 ## 项目介绍
-本项目将使用区块链公链数据对 NFT 数字藏品的“一生”做可视化分析，支持通过图片/ NFT 名称/ NFT 类别名称来溯源并分析藏品的交易情况（发行价、发行量，发行方，转手次数，转手时间，价格趋势等）。也支持用户的交易偏好分析，为 NFT 玩家闯荡数字藏品世界提供贴心 Tips 💡。
+本项目将使用区块链公链数据对 NFT 数字藏品的“一生”做可视化分析，支持通过图片/ NFT 名称/ NFT 类别名称来溯源并分析藏品的交易情况（发行价、发行量，发行方，转手次数，转手时间，价格趋势等）。也支持用户的交易偏好分析，为 NFT 玩家 *（尤其是小白玩家）* 闯荡数字藏品世界提供贴心 Tips 💡。
+
+参考解释 PPT: https://docs.google.com/presentation/d/1mxoo2Dc8JmeBKfCKWOzZjmcRXeItjTxSimFdr5NPyDg/edit?usp=sharing
 
 ## 背景&动机
 ### 背景
@@ -85,3 +87,4 @@
 ![search](./media/search.png)
 ![details](./media/details.png)
 
+## 欢迎和我们一起做好玩有趣又实用的项目 ❤️
