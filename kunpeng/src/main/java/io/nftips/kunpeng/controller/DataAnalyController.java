@@ -6,19 +6,16 @@ import io.nftips.kunpeng.util.CommonUtil;
 import io.nftips.kunpeng.util.DataUtils;
 import io.nftips.kunpeng.util.R;
 import io.nftips.kunpeng.vo.DataAnalyVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import static io.nftips.kunpeng.common.MappingPath.Data_Analy_V1;
+import static io.nftips.kunpeng.util.CodeEnum.NOT_FOUND_CATEGORY_ID;
 
 /**
  * 数据分析接口
@@ -45,8 +42,24 @@ public class DataAnalyController {
     public void DataAnalysis(@RequestParam(value = "day", defaultValue = "1") Integer day,
                              @RequestParam("categoryId") String categoryId) {
 
-       DataAnalyVo dataAnalyVo = dataAnalyService.statisticTradeInfo(day,categoryId);
+        if (StringUtils.isBlank(categoryId)) {
+            R r = R.error(NOT_FOUND_CATEGORY_ID.getCode(), NOT_FOUND_CATEGORY_ID.getDesc());
+            String result = JSONUtil.toJsonStr(r);
+            CommonUtil.printResult(response, result);
+            return;
+        }
+        if (day == null) {
+            day = 1;
+        }
+        DataAnalyVo dataAnalyVo = null;
+        try {
+            dataAnalyVo = dataAnalyService.statisticTradeInfo(day, categoryId);
+        } catch (Exception e) {
 
+        }
+        R r = R.ok(dataAnalyVo);
+        String result = JSONUtil.toJsonStr(r);
+        CommonUtil.printResult(response, result);
     }
 
     public static void main(String[] args) {
