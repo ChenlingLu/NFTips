@@ -37,7 +37,7 @@
         sum(1) AS  `tradingNum`
         from bsn_nft_trading_info a
         where  a.category_id=#{categoryId}
-              and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{passedDay}
+              and a.occur_time>=#{passedDay} and a.occur_time &lt;=#{passedDay}
         GROUP BY date_format(a.occur_time,'%Y-%m-%d')
     </select>
 

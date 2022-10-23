@@ -1,6 +1,7 @@
 package io.nftips.kunpeng.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import io.nftips.kunpeng.orm.entity.HoldingPeriodEntity;
 import io.nftips.kunpeng.orm.entity.NFTMintStatisticsEntity;
@@ -146,10 +147,13 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         tradeSummary.setLastTransferTime("");
         tradeSummary.setLastTransferValue(0.0D);
         tradeSummary.setTotalProfit(0.0D);
+        tradeSummary.setBuyingIndex(0);
         if (isMintNft) {
             NftProfitEntity nftProfit = nftTradingInfoMapper.statisticsProfit(categoryId);
             if (nftProfit != null) {
                 BeanUtil.copyProperties(nftProfit, tradeSummary);
+                // todo 先随机值
+                tradeSummary.setBuyingIndex(RandomUtil.randomInt(30,88));
             }
         }
 
@@ -202,7 +206,7 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
                 .groupBy(NftInfoEntity::getCategoryName)
                 .list();
 
-        Integer count = 0;
+        int count = 0;
         if (list != null) {
             count = list.size();
         }

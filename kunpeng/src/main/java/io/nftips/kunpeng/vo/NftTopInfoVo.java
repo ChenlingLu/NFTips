@@ -33,6 +33,12 @@ public class NftTopInfoVo extends BaseVo {
 
     /**
      * 投资价值
+     * TODO 搞错了
      */
     private Double worth;
+
+    /**
+     * 购买指数
+     */
+    private Integer buyingIndex;
 }

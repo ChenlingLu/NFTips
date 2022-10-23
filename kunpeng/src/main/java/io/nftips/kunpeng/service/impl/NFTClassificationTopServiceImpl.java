@@ -1,12 +1,12 @@
 package io.nftips.kunpeng.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.nftips.kunpeng.orm.entity.NftInfoEntity;
 import io.nftips.kunpeng.orm.entity.NftTopInfoEntity;
 import io.nftips.kunpeng.orm.mapper.NftInfoMapper;
 import io.nftips.kunpeng.orm.mapper.NftTradingInfoMapper;
-import io.nftips.kunpeng.orm.service.NftInfoService;
 import io.nftips.kunpeng.service.NFTClassificationTopService;
 import io.nftips.kunpeng.util.R;
 import io.nftips.kunpeng.vo.NftTopInfoVo;
@@ -33,8 +33,6 @@ public class NFTClassificationTopServiceImpl implements NFTClassificationTopServ
     private NftTradingInfoMapper nftTradingInfoMapper;
     @Resource
     private NftInfoMapper nftInfoMapper;
-    @Resource
-    private NftInfoService nftInfoService;
 
     /**
      * TOP 10
@@ -77,6 +75,10 @@ public class NFTClassificationTopServiceImpl implements NFTClassificationTopServ
         List<NftTopInfoVo> top10 = topInfos.stream().filter(x -> x.getCategoryName() != null)
                 .map(entity -> BeanUtil.copyProperties(entity, NftTopInfoVo.class))
                 .collect(Collectors.toList());
+        // TODO
+        top10.stream().forEach(x->{
+            x.setBuyingIndex(RandomUtil.randomInt(30, 88));
+        });
 //        List<String> explain = nftTradingInfoMapper.selectTopN_Explain(10);
         return R.ok(top10);
     }
