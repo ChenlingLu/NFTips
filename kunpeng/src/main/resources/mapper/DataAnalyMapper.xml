@@ -4,48 +4,48 @@
 
     <select id="selectPriceHistory" resultType="io.nftips.kunpeng.vo.PriceHistory">
         -- 历史价格信息
-        SELECT amount as price ,occur_time as `time`
+        SELECT amount as price, occur_time as `time`
         FROM bsn_nft_trading_info
-        WHERE category_id=#{categoryId}
-         and occur_time>=#{passedDay}
-         and occur_time&lt;=#{currentDay}
+        WHERE category_id = #{categoryId}
+          and occur_time &gt;= #{passedDay}
+          and occur_time &lt;= #{currentDay}
 
     </select>
 
     <select id="selectAverageRevenueList" resultType="io.nftips.kunpeng.vo.AverageRevenue">
-        select
-        date_format(a.occur_time,'%Y-%m-%d') as `time`,
-        sum(a.amount) AS  `revenue`
+        select date_format(a.occur_time, '%Y-%m-%d') as `time`,
+               sum(a.amount)                         AS `revenue`
         from bsn_nft_trading_info a
-        where  a.category_id=#{categoryId}
-        and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{currentDay}
-        GROUP BY date_format(a.occur_time,'%Y-%m-%d')
+        where a.category_id = #{categoryId}
+          and a.occur_time &gt;= #{passedDay}
+          and a.occur_time &lt;= #{currentDay}
+        GROUP BY date_format(a.occur_time, '%Y-%m-%d')
 
     </select>
     <select id="selectTotalRevenue" resultType="java.lang.Double">
 
-        select
-        sum( a.amount) AS  `totalRevenue`
+        select sum(a.amount) AS `totalRevenue`
         from bsn_nft_trading_info a
-        where  a.category_id=#{categoryId}
-        and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{oldPastDate}
+        where a.category_id = #{categoryId}
+          and a.occur_time &gt;= #{passedDay}
+          and a.occur_time &lt;= #{oldPastDate}
     </select>
 
     <select id="selectTradingNumberList" resultType="io.nftips.kunpeng.vo.TradingNumber">
-        select
-        date_format(a.occur_time,'%Y-%m-%d') as `time`,
-        sum(1) AS  `tradingNum`
+        select date_format(a.occur_time, '%Y-%m-%d') as `time`,
+               sum(1)                                AS `tradingNum`
         from bsn_nft_trading_info a
-        where  a.category_id=#{categoryId}
-              and a.occur_time>=#{passedDay} and a.occur_time &lt;=#{passedDay}
-        GROUP BY date_format(a.occur_time,'%Y-%m-%d')
+        where a.category_id = #{categoryId}
+          and a.occur_time &gt;= #{passedDay}
+          and a.occur_time &lt;= #{passedDay}
+        GROUP BY date_format(a.occur_time, '%Y-%m-%d')
     </select>
 
     <select id="selectTotalTradingNum" resultType="java.lang.Integer">
-        select
-        sum( 1) AS  `totalTradingNum`
+        select sum(1) AS `totalTradingNum`
         from bsn_nft_trading_info a
-        where  a.category_id=#{categoryId}
-        and a.occur_time>=#{passedDay} and a.occur_time&lt;=#{passedDay}
+        where a.category_id = #{categoryId}
+          and a.occur_time &gt;= #{passedDay}
+          and a.occur_time &lt;= #{passedDay}
     </select>
 </mapper>
