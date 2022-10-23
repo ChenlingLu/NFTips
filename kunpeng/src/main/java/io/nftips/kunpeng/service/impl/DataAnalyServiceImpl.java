@@ -29,6 +29,7 @@ public class DataAnalyServiceImpl implements DataAnalyService {
     @Override
     public DataAnalyVo statisticTradeInfo(Integer passedDay, String categoryId) {
 
+        DataAnalyVo dataAnalyVo = new DataAnalyVo();
         // 当前时间
         String currentDay = DataUtils.getCurrentTimeString();
         //近两天
@@ -44,18 +45,18 @@ public class DataAnalyServiceImpl implements DataAnalyService {
         // 过去时间到当前时间段内收益情况
         List<AverageRevenue> averageRevenueList = dataAnalyMapper.selectAverageRevenueList(categoryId, pastDate, currentDay);
         //总收益
-        Double totalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, pastDate,pastDate);
+        Double totalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, pastDate,currentDay);
         //过去时间到过去时间的对比 比如pastDate=2022-10-12 00：00：00
         //则此处计算为 pastDate: 2022-10-10 00：00：00 --oldPastDate 2022-10-12 00：00：00
-        Double oldTotalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, pastDate,oldPastDate);
+        Double oldTotalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId,oldPastDate, pastDate);
 
 
         // passedDay内交易次数
         List<TradingNumber> tradingNumberList = dataAnalyMapper.selectTradingNumberList(categoryId, pastDate,currentDay);
         //总次数
-        Integer totalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, pastDate);
+        Integer totalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, pastDate,currentDay);
         //对比passedDay之前
-        Integer oldTotalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, oldPastDate);
+        Integer oldTotalTradingNum = dataAnalyMapper.selectTotalTradingNum(categoryId, oldPastDate,pastDate);
 
 
         //历史交易次数

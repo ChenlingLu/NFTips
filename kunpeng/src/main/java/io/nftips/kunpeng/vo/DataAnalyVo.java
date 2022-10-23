@@ -80,35 +80,5 @@ public class DataAnalyVo {
      */
     private String beforeGains;
 
-    @Data
-    @ToString
-    public static class HistoryTotalGains {
-        /**
-         * 时间
-         */
-        private Timestamp time;
-
-        /**
-         * 单位时间内涨幅 比如天数为2 则展示
-         */
-        private Double gains;
-
-    }
-
-    @Data
-    @ToString
-    public static class ChangedHandsDay {
-
-        /**
-         * 时间
-         */
-        private Timestamp time;
-
-        /**
-         * 转手天数
-         */
-        private Double day;
-
-    }
 
 }

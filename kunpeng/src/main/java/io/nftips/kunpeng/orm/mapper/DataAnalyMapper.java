@@ -29,7 +29,8 @@ public interface DataAnalyMapper {
                                                 @Param("currentDay") String currentDay);
 
     Integer selectTotalTradingNum(@Param("categoryId") String categoryId,
-                                 @Param("passedDay") String passedDay);
+                                  @Param("passedDay") String passedDay,
+                                  @Param("currentDay") String currentDay);
 
 
     List<NftResaleTimeEntity> resaleTime(@Param("categoryId") String categoryId,
