@@ -148,12 +148,17 @@ public class NFTBlockChainInfoServiceImpl implements NFTBlockChainInfoService {
         tradeSummary.setLastTransferValue(0.0D);
         tradeSummary.setTotalProfit(0.0D);
         tradeSummary.setBuyingIndex(0);
+        tradeSummary.setAskPrice(0.0D);
         if (isMintNft) {
             NftProfitEntity nftProfit = nftTradingInfoMapper.statisticsProfit(categoryId);
             if (nftProfit != null) {
                 BeanUtil.copyProperties(nftProfit, tradeSummary);
                 // todo 先随机值
                 tradeSummary.setBuyingIndex(RandomUtil.randomInt(30,88));
+                if (tradeSummary.getLastTransferValue() != null && tradeSummary.getLastTransferValue() > 0) {
+                    Double askPrice = tradeSummary.getLastTransferValue() - tradeSummary.getLastTransferValue() * 0.5;
+                    tradeSummary.setAskPrice(askPrice);
+                }
             }
         }
 

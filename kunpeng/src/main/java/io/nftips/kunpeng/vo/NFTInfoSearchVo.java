@@ -127,6 +127,10 @@ public class NFTInfoSearchVo {
          * 购买指数
          */
         private Integer buyingIndex;
+        /**
+         * 卖出价
+         */
+        private Double askPrice;
     }
 
     /**
