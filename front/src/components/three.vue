@@ -1,27 +1,30 @@
 <template>
   <section class="three">
-    <div class="echarts" ref="chart" id="one" />
+    <div class="echarts" ref="chartRef" id="one" />
   </section>
 
 </template>
 
 <script setup name="three">
-import { reactive, defineProps, onMounted, watch } from 'vue'
+import { defineProps, onMounted, watch, ref, reactive } from 'vue'
 import * as echarts from "echarts";
+import { reactiveComputed } from '@vueuse/shared';
 
 const props = defineProps({
   data: Number
 });
 
+let chartRef = ref(null);
+
+let myChart = null;
 
 onMounted(() => {
-
   initEchart(props.data);
 })
 
 const initEchart = ((data) => {
 
-  const myChart = echarts.init(document.getElementById('one'));
+  myChart = echarts.init(chartRef.value);
 
   var dataStyle = {
     normal: {
@@ -31,75 +34,67 @@ const initEchart = ((data) => {
       labelLine: {
         show: false
       },
-      shadowBlur: 40,
-      shadowColor: 'rgba(40, 40, 40, 0.5)',
     }
   };
   var placeHolderStyle = {
     normal: {
-      color: 'rgba(44,59,70,1)', // 未完成的圆环的颜色
-      label: {
-        show: false
-      },
-      labelLine: {
-        show: false
-      }
+      color: 'rgba(44,59,70,1)',
     },
-    emphasis: {
-      color: 'rgba(44,59,70,1)' // 未完成的圆环的颜色
-    }
   };
   myChart.setOption(
     {
       title: {
-        text: '50%',
-        x: 'center',
-        y: 'center',
+        show: true,
+        text: '实际交易数，在 7 天内 /28 天内 /356 天内交易次数',
+        bottom: 0,
         textStyle: {
-          fontWeight: 'normal',
-          color: '#b697cd',
-          fontSize: 35
-        }
+          fontSize: 12,
+          color: '#FFFFFF',
+        },
+        left: '20%',
       },
-      tooltip: {
-        show: false,
-      },
-      toolbox: {
-        show: false,
-      },
-      // color : ['#3dd4de','#b697cd','#a6f08f'],
-      backgroundColor: 'rgba(0,0,0,0)',
       series: [{
         name: 'Pie1',
         type: 'pie',
         clockWise: false,
-        radius: [60, 65],
+        radius: [60, 68],
         itemStyle: dataStyle,
         hoverAnimation: false,
-        center: ['25%', '50%'],
+        center: ['15%', '50%'],
         data: [{
-          value: data.lager?.radio || 0,
+          value: parseInt(data.small?.radio) || 0,
           label: {
             normal: {
-              formatter: '{d}%',
-              position: 'center',
+              formatter: [
+                `{a|${data.small?.radio || 0}}`,
+                `{b|${data.small?.tip || ''}}`
+              ].join('\n'),
               show: true,
+              position: 'center',
               textStyle: {
-                fontSize: '35',
-                fontWeight: 'normal',
-                color: '#3dd4de'
+                rich: {
+                  a: {
+                    color: '#fff',
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    lineHeight: '20'
+                  },
+                  b: {
+                    color: '#7C7C7C',
+                    fontSize: '12px',
+                    lineHeight: '16'
+                  },
+                },
               }
             }
           },
           itemStyle: {
             normal: {
-              color: '#3dd4de',
-              shadowColor: '#3dd4de',
-              shadowBlur: 10
+              color: '#F6AF87',
             }
           }
         }, {
-          value: 100 - (data.lager?.radio || 0),
+          value: 100 - (parseInt(data.small?.radio) || 0),
           name: 'invisible',
           itemStyle: placeHolderStyle,
         }]
@@ -107,21 +102,44 @@ const initEchart = ((data) => {
         name: 'Pie2',
         type: 'pie',
         clockWise: false,
-        radius: [60, 65],
+        radius: [60, 68],
         itemStyle: dataStyle,
         hoverAnimation: false,
-        center: [`data.middle?.radio || 0%`, `100 - (data.middle?.radio || 0)%`],
+        center: ['45%', '50%'],
         data: [{
-          value: data.middle?.radio || 0,
+          value: parseInt(data.middle?.radio) || 0,
+          label: {
+            normal: {
+              formatter: [
+                `{a|${data.middle?.radio || 0}}`,
+                `{b|${data.middle?.tip || ''} }`
+              ].join('\n'),
+              show: true,
+              position: 'center',
+              textStyle: {
+                rich: {
+                  a: {
+                    color: '#fff',
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    lineHeight: '20'
+                  },
+                  b: {
+                    color: '#7C7C7C',
+                    fontSize: '12px',
+                    lineHeight: '16'
+                  },
+                },
+              }
+            }
+          },
           itemStyle: {
             normal: {
-              color: '#b697cd',
-              shadowColor: '#b697cd',
-              shadowBlur: 10
+              color: '#FF8B4A',
             }
           }
         }, {
-          value: 100 - (data.middle?.radio || 0),
+          value: 100 - (parseInt(data.middle?.radio) || 0),
           name: 'invisible',
           itemStyle: placeHolderStyle,
         }]
@@ -129,33 +147,44 @@ const initEchart = ((data) => {
         name: 'Pie3',
         type: 'pie',
         clockWise: false,
-        radius: [60, 65],
+        radius: [60, 68],
         itemStyle: dataStyle,
         hoverAnimation: false,
         center: ['75%', '50%'],
         data: [{
-          value: data.small?.radio || 0,
+          value: parseInt(data.lager?.radio) || 0,
           label: {
             normal: {
-              formatter: '{d}%',
-              position: 'center',
+              formatter: [
+                `{a|${data.lager?.radio || 0}}`,
+                `{b|${data.lager?.tip || ''} }`
+              ].join('\n'),
               show: true,
+              position: 'center',
               textStyle: {
-                fontSize: '35',
-                fontWeight: 'normal',
-                color: '#a6f08f'
+                rich: {
+                  a: {
+                    color: '#fff',
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    lineHeight: '20'
+                  },
+                  b: {
+                    color: '#7C7C7C',
+                    fontSize: '12px',
+                    lineHeight: '16'
+                  },
+                },
               }
             }
           },
           itemStyle: {
             normal: {
-              color: '#a6f08f',
-              shadowColor: '#a6f08f',
-              shadowBlur: 10
+              color: '#FF5C00',
             }
           }
         }, {
-          value: 100 - (data.small?.radio || 0),
+          value: 100 - (parseInt(data.lager?.radio) || 0),
           name: 'invisible',
           itemStyle: placeHolderStyle,
         }]
@@ -170,69 +199,12 @@ watch(() => props.data, (newValue, oldValue) => {
 
 </script>
 
-<!-- <script >
-import * as echarts from "echarts";
-import threeo from '@/components/echart'
-let chart = {};
-
-export default {
-  name: "chart",
-  data() {
-    return {
-      resizeTimer: null,
-      version: "1.0",
-      chartTemp: null,
-    };
-  },
-
-  props: {
-    // 图表参数
-  
-  },
-
-
-  methods: {
-    // 初始化
-    init() {
- 
-       var myChart = echarts.init(document.getElementById('one'));
-      if (threeo) {
-        myChart.setOption(threeo);
-      }
-    },
-
-    // 调整尺寸
-    resize(options = {}) {
-      this.resizeTimer = clearTimeout(this.resizeTimer);
-      this.resizeTimer = setTimeout(() => {
-      this.init()
-      }, 300);
-    },
-  },
-  mounted() {
-    this.chartTemp = Math.random();
-    this.$nextTick(() => {
-      this.init();
-    });
-    window.addEventListener("resize", this.resize);
-  },
-  beforeUnmount() {
-    if (chart[this.chartTemp]) {
-      window.removeEventListener("resize", this.resize);
-      this.resizeTimer = clearTimeout(this.resizeTimer);
-      chart[this.chartTemp].dispose();
-      chart[this.chartTemp] = null;
-    }
-  },
-};
-</script> -->
-
 <style scoped lang="scss">
 .three {
   .echarts {
     position: relative;
-    width: 500px;
-    height: 150px;
+    width: 100%;
+    height: 200px;
 
   }
 }

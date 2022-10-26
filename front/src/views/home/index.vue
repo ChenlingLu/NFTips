@@ -5,10 +5,8 @@
     <div class="container">
       <div class="left">
         <p class="home_title">{{homeInfo.title}}</p>
-        <el-input class="home_select" v-model="homeInfo.selectValue"
-          placeholder="NFT id" 
-          :suffix-icon="Search" :suffix-transition=false
-          @change="handleEnter">
+        <el-input class="home_select" v-model="homeInfo.selectValue" placeholder="NFT id" :suffix-icon="Search"
+          :suffix-transition=false @change="handleEnter">
           <!-- <el-option v-for="item in homeInfo.options" :key="item.value" :label="item.label" :value="item.value" /> -->
         </el-input>
 
@@ -28,7 +26,6 @@
 import { useStore } from 'vuex'
 import { Search } from '@element-plus/icons-vue'
 import { reactive, onMounted } from "vue"
-import { ElSelect } from 'element-plus'
 import Footer from "@/components/footer.vue"
 
 import router from '../../router';
@@ -37,8 +34,7 @@ import Upload from "@/components/upload.vue"
 import Header from "@/components/header.vue"
 import HomeRight from "@/components/homeRight.vue"
 import tidb from "@/assets/tidb.png"
-const store = useStore()
-console.log('store', store.state.name)
+
 const homeInfo = reactive({
   title: 'Search for the most valuable and investment-potential NFTs 💡',
   list: [],
@@ -58,12 +54,12 @@ onMounted(() => {
 
 const handleEnter = () => {
   router.push({
-    path:'/detail',
-    query:{
+    path: '/detail',
+    query: {
       id: homeInfo.selectValue
     }
   })
-  
+
 }
 
 const remoteMethod = (query) => {
@@ -94,16 +90,14 @@ const states = [
 
 <style lang="scss" scoped>
 .home {
+  min-height: 100vh;
 
   .home_title {
-    height: 29px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
-    /* identical to box height */
-    color: #FFFFFF;
+    color: #fff;
+    margin-bottom: 24px;
   }
 
   .home_select {
@@ -118,13 +112,11 @@ const states = [
   .home_drag {
 
     height: 29px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
-    /* identical to box height */
     color: #FFFFFF;
+    margin: 40px 0 24px;
   }
 
   .home_upload {

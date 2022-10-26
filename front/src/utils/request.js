@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const service = axios.create({
   // baseURL: 'http://localhost:3000',
@@ -7,13 +7,14 @@ const service = axios.create({
 
 // Request interceptors
 service.interceptors.request.use(
-   (config) => {
+  (config) => {
     // do something
-    return config;
-   },
-   (error) => {
+    return { ...config, url: `${config.url}.json` };
+    // return config;
+  },
+  (error) => {
     Promise.reject(error);
-   }
+  }
 );
 
 // Response interceptors
@@ -21,11 +22,11 @@ service.interceptors.response.use(
   async (response) => {
     // do something
     return response.data;
-   },
-   (error) => {
+  },
+  (error) => {
     // do something
     return Promise.reject(error);
-   }
+  }
 );
 
 export default service;

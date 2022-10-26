@@ -22,7 +22,7 @@ const homeInfo = reactive({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px 20px 0;
+  padding: 20px 32px 20px 0;
 }
   .home_foot{
     color: #7C7C7C;

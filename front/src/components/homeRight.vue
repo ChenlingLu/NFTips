@@ -9,7 +9,7 @@
                 <div class="item" v-for="(item,index) in data.list" :key=item.categoryId+index>
                     <div class="text">
                         <p class="name">{{item.categoryName}}</p>
-                        <p class="price">Price:{{item.worth}}</p>
+                        <p class="price">Price: {{item.worth || '--'}} USD</p>
                     </div>
                     <span class="num">{{item.buyingIndex}}</span>
                 </div>
@@ -77,16 +77,11 @@ const hItem = reactive({
 <style lang="scss" scoped>
 .h_right {
     .h_title {
-
-        height: 24px;
-
-        font-family: 'Inter';
-        font-style: normal;
         font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
-
+        font-size: 16px;
+        line-height: 19px;
         color: #FFFFFF;
+        margin-top: 16px;
     }
 
     .h_item {
@@ -94,6 +89,9 @@ const hItem = reactive({
             display: flex;
             align-items: center;
             justify-content: space-between;
+            &+.item{
+                margin-top: 24px;
+            }
         }
 
         .text {
@@ -102,9 +100,6 @@ const hItem = reactive({
 
 
         .name {
-
-            font-family: "Inter";
-            font-style: normal;
             font-weight: 500;
             font-size: 16px;
             line-height: 19px;
@@ -119,6 +114,7 @@ const hItem = reactive({
             font-style: normal;
             font-weight: 500;
             font-size: 16px;
+            margin-top: 10px;
         }
 
         .num {

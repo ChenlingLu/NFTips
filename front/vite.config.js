@@ -11,10 +11,10 @@ import Components from "unplugin-vue-components/vite";
 export default defineConfig({
   server: {
     proxy: {
-      "/query": {
-        target: "http://nftips.io/",
-        changeOrigin: true,
-      },
+      // "/query": {
+      //   target: "http://nftips.io/",
+      //   changeOrigin: true,
+      // },
     },
   },
   plugins: [
