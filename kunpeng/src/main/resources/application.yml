@@ -11,7 +11,7 @@ server:
         uri-encoding: UTF-8
         max-threads: 1000
         min-spare-threads: 30
-    port: 8080
+    port: 80
     servlet:
         context-path: /
 logging:
@@ -24,14 +24,14 @@ logging:
 # Mybatis配置
 mybatis:
     mapperLocations: classpath:mapper/**/*.xml
-#    configuration:
-#        map-underscore-to-camel-case: true
-#        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    configuration:
+        map-underscore-to-camel-case: true
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #
 spring:
     # 环境 dev|test|pro
     profiles:
-        active: dev
+        active: pro
         # exclude可以再springboot application中增加
         #autoconfigure:
         #    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -40,7 +40,7 @@ spring:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
     resources:
-        static-locations: classpath:/public/,classpath:/views/,classpath:/static/
+        static-locations: classpath:/static/,classpath:/views/
     servlet:
         multipart:
             max-file-size: 200MB
@@ -49,9 +49,9 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
-            url: jdbc:mysql://gateway01.us-west-2.prod.aws.tidbcloud.com:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
-            username: 2devWAbVPi2zf2g.root
-            password: Mohuang@Youwo
+            url: jdbc:mysql://172.31.47.182:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
+            username: root
+            password: 3K80yi!#dA1Wz_a49%
             driver-class-name: com.mysql.jdbc.Driver
             initial-size: 10
             max-active: 100
