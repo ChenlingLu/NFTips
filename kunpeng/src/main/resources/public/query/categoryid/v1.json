@@ -1,0 +1,42 @@
+{
+    "msg": "success",
+    "code": 0,
+    "data": {
+        "baseInfo": {
+            "issueStep": "mint_nft",
+            "occurTime": "2022-08-16T12:16:53",
+            "issueEnergyValue": 1669200000,
+            "categoryName": "心流",
+            "issueCount": 4173,
+            "holdingHuman": 1863,
+            "sender": "iaa1knkhc69rvxq8gt0jnfdyqxz4da642cg4f8nf6q",
+            "chainLink": "https://image.flow.xinliuspace.com/unsafe/20220816/9d0d5984d7d942f693beb11d9935b702",
+            "realTradeCount": 1527,
+            "categoryId": "avataluua5xn3gyvjvjpnw9tqwgcixiv"
+        },
+        "holdingPeriod": {
+            "lager": {
+                "radio": "0.00%",
+                "tip": "<365d"
+            },
+            "small": {
+                "radio": "100.00%",
+                "tip": "<7d"
+            },
+            "middle": {
+                "radio": "0.00%",
+                "tip": "<28d"
+            }
+        },
+        "tradeSummary": {
+            "avgValue": 496.99,
+            "askPrice": 453.815,
+            "totalProfit": 670442.1,
+            "transactions": 1349,
+            "buyingIndex": 52,
+            "accounts": 832,
+            "lastTransferValue": 907.63,
+            "preTransferValueDiff": 882.65
+        }
+    }
+}

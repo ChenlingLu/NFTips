@@ -1,0 +1,106 @@
+{
+    "msg": "success",
+    "code": 0,
+    "data": [
+        {
+            "gmtCreate": "2022-10-23T04:24:00",
+            "gmtModify": "2022-10-23T04:24:00",
+            "categoryId": "avatabm8sjegcnpl8er9cs7v0osnrpee",
+            "categoryName": "Default",
+            "sender": "iaa1pck9alvjxdm0rsfl99ku3dka3ddykkx7cu78q7",
+            "issueEnergyValue": 9414800000,
+            "worth": 5120.4006,
+            "buyingIndex": 50
+        },
+        {
+            "gmtCreate": "2022-10-22T13:56:02",
+            "gmtModify": "2022-10-22T13:56:02",
+            "categoryId": "avataii0avb3d9ddy7idiv9iwnsfz4ik",
+            "categoryName": "千里马-将军",
+            "sender": "",
+            "issueEnergyValue": 877400000,
+            "worth": 1061.10074,
+            "buyingIndex": 73
+        },
+        {
+            "gmtCreate": "2022-10-22T01:08:04",
+            "gmtModify": "2022-10-22T01:52:29",
+            "categoryId": "avatanvhexx1llnb5hyu4vvl7mwjxbzx",
+            "categoryName": "挽月数藏",
+            "sender": "iaa1frcty3mmw09hcl0y46j62tstf885m77ma7kc60",
+            "issueEnergyValue": 2962600000,
+            "worth": 776.10302,
+            "buyingIndex": 66
+        },
+        {
+            "gmtCreate": "2022-10-22T22:55:26",
+            "gmtModify": "2022-10-22T22:55:28",
+            "categoryId": "avataskdfav2puo38rxj1erjn7uurqwe",
+            "categoryName": "数字藏品1mT",
+            "sender": "iaa1rp6fm3d9u0x2uvh3639uc5anah7f9cyesxzzzq",
+            "issueEnergyValue": 1843800000,
+            "worth": 422.1037,
+            "buyingIndex": 70
+        },
+        {
+            "gmtCreate": "2022-10-22T22:25:49",
+            "gmtModify": "2022-10-22T22:25:49",
+            "categoryId": "avatav6skngyjw3gupkfmqruvvsmpjly",
+            "categoryName": "曙光系列",
+            "sender": "iaa1e79vq667g7mttfzqj5nzdyywa84cuhrxj8as9r",
+            "issueEnergyValue": 634200000,
+            "worth": 377.10207,
+            "buyingIndex": 65
+        },
+        {
+            "gmtCreate": "2022-10-23T02:48:43",
+            "gmtModify": "2022-10-23T03:11:53",
+            "categoryId": "jibenxuncang",
+            "categoryName": "基本",
+            "sender": "iaa1rqa82rwcp64uvy2g4vj5w8xj0gyekgmse9mrhl",
+            "issueEnergyValue": 1433200000,
+            "worth": 367.80212,
+            "buyingIndex": 84
+        },
+        {
+            "gmtCreate": "2022-10-22T17:47:23",
+            "gmtModify": "2022-10-22T17:47:23",
+            "categoryId": "yijingmeta",
+            "categoryName": "艺境Meta",
+            "sender": "iaa1u22uz6unxcrva3ly64r6jcdugz6hrssp8wmn58",
+            "issueEnergyValue": 5221000000,
+            "worth": 304.50512,
+            "buyingIndex": 73
+        },
+        {
+            "gmtCreate": "2022-10-22T00:50:00",
+            "gmtModify": "2022-10-22T00:50:00",
+            "categoryId": "avata3lalffjgjhmr451vwgfedomdqgd",
+            "categoryName": "古镇-黄姚",
+            "sender": "",
+            "issueEnergyValue": 144800000,
+            "worth": 217.20359,
+            "buyingIndex": 83
+        },
+        {
+            "gmtCreate": "2022-10-22T09:38:46",
+            "gmtModify": "2022-10-22T09:38:46",
+            "categoryId": "avatafez6axhmgvxbjvdyxki6alsj2vq",
+            "categoryName": "ugyishu_nft",
+            "sender": "iaa162cfph5gs4f80jheg3jfjjwvafl4na9u6m42hs",
+            "issueEnergyValue": 847800000,
+            "worth": 157.50495,
+            "buyingIndex": 83
+        },
+        {
+            "gmtCreate": "2022-10-22T18:54:53",
+            "gmtModify": "2022-10-22T19:07:44",
+            "categoryId": "syvdmf4zflpdmf0wicqqidhxhvikyukg",
+            "categoryName": "新建类别",
+            "sender": "iaa1jdvldxrhm34hv4md36zwhge28jd595uu307lms",
+            "issueEnergyValue": 167200000,
+            "worth": 114.90679,
+            "buyingIndex": 71
+        }
+    ]
+}

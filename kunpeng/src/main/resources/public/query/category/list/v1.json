@@ -1,0 +1,21 @@
+{
+    "msg": "success",
+    "code": 0,
+    "data": {
+      	"list":[
+          {
+            "categoryId": "uewoewppoxpzx",
+            "categoryName": "流心"
+          },
+          {
+            "categoryId": "uewoewppoxpzx",
+            "categoryName": "流心与明月"
+          },
+          {
+            "categoryId": "uewoewppoxpzx",
+            "categoryName": "流心月饼-端午纪念日"
+          }
+        ],
+      	"count":1883
+    }
+}

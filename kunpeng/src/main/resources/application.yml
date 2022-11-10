@@ -40,7 +40,7 @@ spring:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
     resources:
-        static-locations: classpath:/static/,classpath:/views/
+        static-locations: classpath:/public/,classpath:/static/,classpath:/views/
     servlet:
         multipart:
             max-file-size: 200MB
@@ -49,7 +49,7 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
-            url: jdbc:mysql://172.31.47.182:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
+            url: jdbc:mysql://34.219.204.49:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
             username: root
             password: 3K80yi!#dA1Wz_a49%
             driver-class-name: com.mysql.jdbc.Driver

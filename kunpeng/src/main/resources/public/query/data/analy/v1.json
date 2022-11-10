@@ -1,0 +1,65 @@
+{
+    "msg": "success",
+    "code": 0,
+    "data": {
+        "totalChangeDay": 2,
+        "averageRevenue": [
+            {
+                "revenue": 10,
+                "time": "2022-10-22T00: 55: 26"
+            },
+            {
+                "revenue": 20,
+                "time": "2022-10-23T00: 55: 26"
+            },
+            {
+                "revenue": 10,
+                "time": "2022-10-24T00: 55: 26"
+            },
+            {
+                "revenue": 30,
+                "time": "2022-10-25T00: 55: 26"
+            },
+            {
+                "revenue": 40,
+                "time": "2022-10-26T00: 55: 26"
+            },
+            {
+                "revenue": 30,
+                "time": "2022-10-27T00: 55: 26"
+            }
+        ],
+        "totalGains": 4000,
+        "tradingNumber": [
+            {
+                "tradingNum": 10,
+                "time": "2022-10-22T00: 55: 26"
+            },
+            {
+                "tradingNum": 20,
+                "time": "2022-10-23T00: 55: 26"
+            }
+        ],
+        "beforeTradingNum": "+10",
+        "beforeRevenue": "-10.0",
+        "totalTradingNum": 30,
+        "beforeChangeDay": "-0.5",
+        "beforeGains": "+1000",
+        "totalRevenue": 20,
+        "categoryId": "2qasd2a1213asdz",
+        "priceHistory": [
+            {
+                "price": 20,
+                "time": "2022-10-22T00: 55: 26"
+            },
+            {
+                "price": 50,
+                "time": "2022-10-22T01: 55: 26"
+            },
+            {
+                "price": 40,
+                "time": "2022-10-23T00: 55: 26"
+            }
+        ]
+    }
+}
