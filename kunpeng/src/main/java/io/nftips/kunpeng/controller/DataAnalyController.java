@@ -40,7 +40,7 @@ public class DataAnalyController {
      */
     @RequestMapping(value = {Data_Analy_V1})
     public void DataAnalysis(@RequestParam(value = "day", defaultValue = "1") Integer day,
-                             @RequestParam("categoryId") String categoryId) {
+                             @RequestParam("category_id") String categoryId) {
 
         if (StringUtils.isBlank(categoryId)) {
             R r = R.error(NOT_FOUND_CATEGORY_ID.getCode(), NOT_FOUND_CATEGORY_ID.getDesc());
@@ -55,7 +55,7 @@ public class DataAnalyController {
         try {
             dataAnalyVo = dataAnalyService.statisticTradeInfo(day, categoryId);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         R r = R.ok(dataAnalyVo);
         String result = JSONUtil.toJsonStr(r);

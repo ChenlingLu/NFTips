@@ -3,13 +3,14 @@
 <mapper namespace="io.nftips.kunpeng.orm.mapper.DataAnalyMapper">
 
     <select id="selectPriceHistory" resultType="io.nftips.kunpeng.vo.PriceHistory">
-        -- 历史价格信息
-        SELECT amount as price, occur_time as `time`
+        SELECT ROUND(avg(amount),2) as `price`,
+        date_format(`occur_time`,'%Y-%m-%d')  as `time`
         FROM bsn_nft_trading_info
-        WHERE category_id = #{categoryId}
-          and occur_time &gt;= #{passedDay}
-          and occur_time &lt;= #{currentDay}
-
+        WHERE category_id=#{categoryId}
+        and occur_time &gt;= #{passedDay}
+        and occur_time &lt;= #{currentDay}
+        GROUP BY date_format(`occur_time`,'%Y-%m-%d')
+        ORDER BY `time`
     </select>
 
     <select id="selectAverageRevenueList" resultType="io.nftips.kunpeng.vo.AverageRevenue">

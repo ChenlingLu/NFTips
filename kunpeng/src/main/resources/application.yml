@@ -11,7 +11,7 @@ server:
         uri-encoding: UTF-8
         max-threads: 1000
         min-spare-threads: 30
-    port: 80
+    port: 8088
     servlet:
         context-path: /
 logging:
@@ -49,9 +49,14 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
-            url: jdbc:mysql://34.219.204.49:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
-            username: root
-            password: 3K80yi!#dA1Wz_a49%
+#            url: jdbc:mysql://34.219.204.49:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
+#            username: root
+#            password: 3K80yi!#dA1Wz_a49%
+#            driver-class-name: com.mysql.jdbc.Driver
+#            initial-size: 10
+            url: jdbc:mysql://gateway01.us-west-2.prod.aws.tidbcloud.com:4000/kunpeng?useSSL=false&enabledTLSProtocols=TLSv1.2,TLSv1.3&useOldAliasMetadataBehavior=true
+            username: 2devWAbVPi2zf2g.root
+            password: Mohuang@Youwo
             driver-class-name: com.mysql.jdbc.Driver
             initial-size: 10
             max-active: 100

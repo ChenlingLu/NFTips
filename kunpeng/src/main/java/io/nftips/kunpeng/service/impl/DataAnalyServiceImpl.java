@@ -73,6 +73,9 @@ public class DataAnalyServiceImpl implements DataAnalyService {
                     Double oldTotalRevenue = dataAnalyMapper.selectTotalRevenue(categoryId, oldPastDate, pastDate);
                     dataAnalyVo.setAverageRevenue(averageRevenueList);
                     dataAnalyVo.setTotalRevenue(totalRevenue);
+                    if (averageRevenueList.size() != 0) {
+                        dataAnalyVo.setAverageRevenues(totalRevenue / averageRevenueList.size());
+                    }
 
                     // 计算收益差
                     calculationAverageRevenue(dataAnalyVo, totalRevenue, oldTotalRevenue);
@@ -101,37 +104,33 @@ public class DataAnalyServiceImpl implements DataAnalyService {
         }
         List<ChangedHandsDay> changedHandsDayList = new ArrayList<>();
 
-        ChangedHandsDay changedHandsDay1 = new ChangedHandsDay();
-        double day1 = new Random().nextInt(10);
-        changedHandsDay1.setDay(day1);
-        changedHandsDay1.setTime(new Timestamp(System.currentTimeMillis() - 1000));
-        ChangedHandsDay changedHandsDay2 = new ChangedHandsDay();
-        double day2 = new Random().nextInt(10);
-        changedHandsDay2.setDay(day2);
-        changedHandsDay2.setTime(new Timestamp(System.currentTimeMillis() - 2000));
-
-        changedHandsDayList.add(changedHandsDay1);
-        changedHandsDayList.add(changedHandsDay2);
-        dataAnalyVo.setTotalChangeDay(day1 + day2);
+        double totalChangeDay = 0D;
+        for (int i = 0; i < new Random().nextInt(10); i++) {
+            ChangedHandsDay changedHandsDay1 = new ChangedHandsDay();
+            double day1 = new Random().nextInt(10);
+            changedHandsDay1.setDay(day1);
+            changedHandsDay1.setTime(new Timestamp(System.currentTimeMillis() - new Random().nextInt(10000)));
+            totalChangeDay += day1;
+            changedHandsDayList.add(changedHandsDay1);
+        }
+        dataAnalyVo.setTotalChangeDay(totalChangeDay);
+        dataAnalyVo.setAverageChangeDay(totalChangeDay / changedHandsDayList.size());
         dataAnalyVo.setChangedHandsDay(changedHandsDayList);
-        dataAnalyVo.setBeforeChangeDay("-" + new Random().nextInt(5));
-
+        dataAnalyVo.setBeforeChangeDay("-" + new Random().nextInt(1000));
 
         List<HistoryTotalGains> historyTotalGains = new ArrayList<>();
-        HistoryTotalGains historyTotalGains1 = new HistoryTotalGains();
 
-        double gains1 = new Random().nextInt(100000);
-        historyTotalGains1.setGains(gains1);
-
-        historyTotalGains1.setTime(new Timestamp(System.currentTimeMillis() - 3000));
-        HistoryTotalGains historyTotalGains2 = new HistoryTotalGains();
-
-        double gains2 = new Random().nextInt(100000);
-        historyTotalGains1.setGains(gains2);
-        historyTotalGains2.setTime(new Timestamp(System.currentTimeMillis() - 5000));
-        historyTotalGains.add(historyTotalGains1);
-        historyTotalGains.add(historyTotalGains2);
-        dataAnalyVo.setTotalGains(gains1 + gains2);
+        double totalGains = 0D;
+        for (int i = 0; i < new Random().nextInt(20); i++) {
+            HistoryTotalGains historyTotalGains1 = new HistoryTotalGains();
+            double gains1 = new Random().nextInt(100000);
+            historyTotalGains1.setGains(gains1);
+            historyTotalGains1.setTime(new Timestamp(System.currentTimeMillis() - new Random().nextInt(10000)));
+            historyTotalGains.add(historyTotalGains1);
+            totalGains += gains1;
+        }
+        dataAnalyVo.setTotalGains(totalGains);
+        dataAnalyVo.setAverageGains(totalGains / historyTotalGains.size());
         dataAnalyVo.setBeforeGains("+" + new Random().nextInt(5000));
         //历史交易次数
         dataAnalyVo.setHistoryTotalGains(historyTotalGains);

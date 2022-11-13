@@ -2,7 +2,6 @@ package io.nftips.kunpeng.vo;
 
 import lombok.Data;
 import lombok.ToString;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

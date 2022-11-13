@@ -29,6 +29,11 @@ public class DataAnalyVo {
     private Double totalRevenue;
 
     /**
+     * 平均收益
+     */
+    private Double averageRevenues;
+
+    /**
      * 对比之前的收益(+12)
      */
     private String beforeRevenue;
@@ -60,6 +65,11 @@ public class DataAnalyVo {
     private Double totalChangeDay;
 
     /**
+     * 平均转手天数
+     */
+    private Double averageChangeDay;
+
+    /**
      * 对比之前的 算出转手天数(+1.5)
      */
     private String beforeChangeDay;
@@ -73,6 +83,11 @@ public class DataAnalyVo {
      * 总涨幅（单位时间内）
      */
     private Double totalGains;
+
+    /**
+     * 平均涨幅（单位时间内）
+     */
+    private Double averageGains;
 
     /**
      * 对比之前的 算出涨幅(-1000)
